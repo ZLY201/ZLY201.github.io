@@ -781,7 +781,7 @@
     }
       MathJax.Hub.Config({
         tex2jax: {
-          inlineMath: [ ['$','$'] ],
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
           processEscapes: true,
           skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
@@ -790,7 +790,6 @@
 
     <script type="text/x-mathjax-config">
       MathJax.Hub.Queue(function() {
-        document.getElementsByTagName("body")[0].style.opacity=1;
         var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; ++i) {
           all[i].SourceElement().parentNode.className += ' has-jax';
