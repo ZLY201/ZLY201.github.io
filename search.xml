@@ -162,7 +162,7 @@
 <p>那么有如下结论</p>
 <ol>
 <li>设$F(n)$代表n的正因子数目，则$F(n) = (a_{1}+ 1)(a_{2} + 1)(a_{3} + 1)…(a_{n} + 1)$</li>
-<li>设$G(n)$代表n的正因子之和，则<br>$G(n) = (1 + p_{1}^{2} + p_{1}^{3}+…+p_{1}^{a_{1}})(1 + p_{2}^{2} + p_{2}^{3}+…+p_{2}^{a_{2}})…(1 + p_{k}^{2} + p_{k}^{3}+…+p_{k}^{a_{k}})=\prod_{i=1}^{n}(\frac{p_{i}^{a_{i}}-1}{p_{i}-1})$</li>
+<li>设$G(n)$代表n的正因子之和，则<br>$G(n) = (1 + p_{1} + p_{1}^{3}+…+p_{1}^{a_{1}})(1 + p_{2} + p_{2}^{2}+…+p_{2}^{a_{2}})…(1 + p_{k} + p_{2}^{3}+…+p_{k}^{a_{k}})=\prod_{i=1}^{n}(\frac{p_{i}^{a_{i}}-1}{p_{i}-1})$</li>
 </ol>
 <h2 id="例题：Trailing-Zeroes-I-LightOJ-1028"><a href="#例题：Trailing-Zeroes-I-LightOJ-1028" class="headerlink" title="例题：Trailing Zeroes (I) LightOJ - 1028"></a>例题：<a href="http://http://lightoj.com/volume_showproblem.php?problem=1028" target="_blank" rel="noopener">Trailing Zeroes (I) LightOJ - 1028</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有多组输入，每次给你一个正整数n，问你n的除1之外的正因子数目</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>因为有多组输入，那么如果对于每一个n进行暴力统计显然会超时，可以先预处理出$10^{6}$以内的质数，然后对n进行质数分解，使用公式1进行求解</p>
