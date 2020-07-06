@@ -43,7 +43,7 @@
   <entry>
     <title>Bank Robbery LightOJ - 1163]</title>
     <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201163/</url>
-    <content><![CDATA[<h2 id="Bank-Robbery-LightOJ-1163"><a href="#Bank-Robbery-LightOJ-1163" class="headerlink" title="Bank Robbery LightOJ - 1163"></a><a href="http://http://lightoj.com/volume_showproblem.php?problem=1163" target="_blank" rel="noopener">Bank Robbery LightOJ - 1163</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你k，输出所有使得$A - [\frac{A}{10}] = K$成立的A</p>
+    <content><![CDATA[<h2 id="Bank-Robbery-LightOJ-1163"><a href="#Bank-Robbery-LightOJ-1163" class="headerlink" title="Bank Robbery LightOJ - 1163"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1163" target="_blank" rel="noopener">Bank Robbery LightOJ - 1163</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你k，输出所有使得$A - [\frac{A}{10}] = K$成立的A</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>$A - [\frac{A}{10}] = K$<br>$A - \frac{A - A % 10}{10} = k$<br>$9A = 10k - A % 10$<br>$9A = 10k - m$</p>
 <p>由于$0\leq m \leq 10$，直接枚举即可</p>
 <p>要注意这题longlong会溢出</p>
@@ -59,7 +59,7 @@
   <entry>
     <title>Finding LCM LightOJ - 1215</title>
     <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201215/</url>
-    <content><![CDATA[<h2 id="Finding-LCM-LightOJ-1215"><a href="#Finding-LCM-LightOJ-1215" class="headerlink" title="Finding LCM LightOJ - 1215"></a><a href="http://http://lightoj.com/volume_showproblem.php?problem=1215" target="_blank" rel="noopener">Finding LCM LightOJ - 1215</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>$LCM(a, b, c) = L$<br>现在告诉你a, b, L，问你c的最小值是多少</p>
+    <content><![CDATA[<h2 id="Finding-LCM-LightOJ-1215"><a href="#Finding-LCM-LightOJ-1215" class="headerlink" title="Finding LCM LightOJ - 1215"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1215" target="_blank" rel="noopener">Finding LCM LightOJ - 1215</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>$LCM(a, b, c) = L$<br>现在告诉你a, b, L，问你c的最小值是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设$lcm = LCM(a, b)$，即求最小的c使得$LCM(lcm, c) = L$</p>
 <p>设$g = gcd(lcm, c)$，那么$\frac{lcm \times c}{g}=L$</p>
 <p>$c = \frac{L}{lcm} \times g$</p>
@@ -79,9 +79,9 @@
       </tags>
   </entry>
   <entry>
-    <title>LightOJ - 1098</title>
+    <title>A New Function LightOJ - 1098</title>
     <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201098/</url>
-    <content><![CDATA[<h2 id="A-New-Function-LightOJ-1098"><a href="#A-New-Function-LightOJ-1098" class="headerlink" title="A New Function LightOJ - 1098"></a><a href="http://http://lightoj.com/volume_showproblem.php?problem=1098" target="_blank" rel="noopener">A New Function LightOJ - 1098</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>定义$SOD(n)$为$n$除$1$和$n$外的所有正因子之和，例如：<br>$SOD(24)=2+3+4+6+8+12=35$<br>定义$CSOD(n)=\sum_{i=1}^{n}SOD(i)$<br>让你求$2e9$内任意n的$CSOD(n)$</p>
+    <content><![CDATA[<h2 id="A-New-Function-LightOJ-1098"><a href="#A-New-Function-LightOJ-1098" class="headerlink" title="A New Function LightOJ - 1098"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1098" target="_blank" rel="noopener">A New Function LightOJ - 1098</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>定义$SOD(n)$为$n$除$1$和$n$外的所有正因子之和，例如：<br>$SOD(24)=2+3+4+6+8+12=35$<br>定义$CSOD(n)=\sum_{i=1}^{n}SOD(i)$<br>让你求$2e9$内任意n的$CSOD(n)$</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对于每一个数，我们可以把它写成$a \times b$的形式，那么对于答案的贡献显然就是$a+b(a!=b!=1!=n)$，而对于一个因子$i$，它在$n$内被统计的次数应当是$\frac{n}{i}-i+1$，举个例子：<br>假设$n = 12$<br>$i = 2时$<br>$4 = 2 \times 2$<br>$6 = 2 \times 3$<br>$8 = 2 \times 4$<br>$10 = 2 \times 5$<br>$12 = 2 \times 6$<br>$2$需要被统计$\frac{12}{2}-2+1= 5$次<br>但是这样的复杂度是$O(n)$，显然不可行，观察上例，发现右边的因子是连续的，并且根据左边因子的出现次数我们可以得到一个等差数列，这样一来，我们就可以在$O(\sqrt{n})$时间内求出答案</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">		ll res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> k = <span class="built_in">sqrt</span>(n);</span><br><span class="line">		<span class="comment">//枚举左边因子</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">			res += i;	<span class="comment">//单独统计平方数的因子</span></span><br><span class="line">			<span class="comment">//右边因子的等差数列区间</span></span><br><span class="line">			ll l = i + <span class="number">1</span>, r = n / i;</span><br><span class="line">			<span class="keyword">if</span> (r &lt; l) <span class="keyword">continue</span>;</span><br><span class="line">			res += (r - l + <span class="number">1</span>) * i + (r - l + <span class="number">1</span>) * (l + r) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>, ++cas, res);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
@@ -94,7 +94,7 @@
   <entry>
     <title>How Many Points? LightOJ - 1077</title>
     <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201077/</url>
-    <content><![CDATA[<h2 id="How-Many-Points-LightOJ-1077"><a href="#How-Many-Points-LightOJ-1077" class="headerlink" title="How Many Points? LightOJ - 1077"></a><a href="http://http://lightoj.com/volume_showproblem.php?problem=1077" target="_blank" rel="noopener">How Many Points? LightOJ - 1077</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你两个坐标，问你这两点连成的线段上坐标均为整数的个数是多少</p>
+    <content><![CDATA[<h2 id="How-Many-Points-LightOJ-1077"><a href="#How-Many-Points-LightOJ-1077" class="headerlink" title="How Many Points? LightOJ - 1077"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1077" target="_blank" rel="noopener">How Many Points? LightOJ - 1077</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你两个坐标，问你这两点连成的线段上坐标均为整数的个数是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑x，y为满足条件的一组坐标，那么有</p>
 <p>$\frac{y_{2}-y_{1}}{x_{2}-x_{1}}=\frac{y-y_{1}}{x-x_{1}}$</p>
 <p>将$(x_{1}, y_{1})$当做坐标原点，则有</p>
@@ -113,7 +113,7 @@
   <entry>
     <title>Digits of Factorial LightOJ - 1045</title>
     <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201045/</url>
-    <content><![CDATA[<h2 id="Digits-of-Factorial-LightOJ-1045"><a href="#Digits-of-Factorial-LightOJ-1045" class="headerlink" title="Digits of Factorial LightOJ - 1045"></a><a href="http://http://lightoj.com/volume_showproblem.php?problem=1045" target="_blank" rel="noopener">Digits of Factorial LightOJ - 1045</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你一个n和m，输出n的阶乘在m进制下的位数</p>
+    <content><![CDATA[<h2 id="Digits-of-Factorial-LightOJ-1045"><a href="#Digits-of-Factorial-LightOJ-1045" class="headerlink" title="Digits of Factorial LightOJ - 1045"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1045" target="_blank" rel="noopener">Digits of Factorial LightOJ - 1045</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你一个n和m，输出n的阶乘在m进制下的位数</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑n!在m下的位数是k，则有：</p>
 <p>$m^{k+1}\leq n!&lt;m^{k+2}$</p>
 <p>$k+1\leq log_{m}^{n!}&lt;k+2$</p>
