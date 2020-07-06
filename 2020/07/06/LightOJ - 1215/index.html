@@ -92,14 +92,14 @@
 
 
 
-<meta name="description" content="Finding LCM LightOJ - 1215题目大意$LCM(a, b, c) &#x3D; L$现在告诉你a, b, L，问你c的最小值是多少 解题思路设$lcm &#x3D; LCM(a, b)$，即求最小的c使得$LCM(lcm, c) &#x3D; L$ 设$g &#x3D; gcd(lcm, c)$，那么$\frac{lcm \asymp c}{g}&#x3D;L$ $c &#x3D; \frac{L}{lcm} \asymp g$ 设$">
+<meta name="description" content="Finding LCM LightOJ - 1215题目大意$LCM(a, b, c) &#x3D; L$现在告诉你a, b, L，问你c的最小值是多少 解题思路设$lcm &#x3D; LCM(a, b)$，即求最小的c使得$LCM(lcm, c) &#x3D; L$ 设$g &#x3D; gcd(lcm, c)$，那么$\frac{lcm \times c}{g}&#x3D;L$ $c &#x3D; \frac{L}{lcm} \times g$ 设$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Finding LCM LightOJ - 1215">
 <meta property="og:url" content="http://zly201.github.io/2020/07/06/LightOJ%20-%201215/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Finding LCM LightOJ - 1215题目大意$LCM(a, b, c) &#x3D; L$现在告诉你a, b, L，问你c的最小值是多少 解题思路设$lcm &#x3D; LCM(a, b)$，即求最小的c使得$LCM(lcm, c) &#x3D; L$ 设$g &#x3D; gcd(lcm, c)$，那么$\frac{lcm \asymp c}{g}&#x3D;L$ $c &#x3D; \frac{L}{lcm} \asymp g$ 设$">
+<meta property="og:description" content="Finding LCM LightOJ - 1215题目大意$LCM(a, b, c) &#x3D; L$现在告诉你a, b, L，问你c的最小值是多少 解题思路设$lcm &#x3D; LCM(a, b)$，即求最小的c使得$LCM(lcm, c) &#x3D; L$ 设$g &#x3D; gcd(lcm, c)$，那么$\frac{lcm \times c}{g}&#x3D;L$ $c &#x3D; \frac{L}{lcm} \times g$ 设$">
 <meta property="article:published_time" content="2020-07-06T13:25:19.000Z">
-<meta property="article:modified_time" content="2020-07-06T13:48:00.831Z">
+<meta property="article:modified_time" content="2020-07-06T13:51:31.791Z">
 <meta property="article:author" content="ZLY201">
 <meta property="article:tag" content="LightOJ, 数论">
 <meta name="twitter:card" content="summary">
@@ -406,11 +406,11 @@
       
         <h2 id="Finding-LCM-LightOJ-1215"><a href="#Finding-LCM-LightOJ-1215" class="headerlink" title="Finding LCM LightOJ - 1215"></a><a href="http://http://lightoj.com/volume_showproblem.php?problem=1215" target="_blank" rel="noopener">Finding LCM LightOJ - 1215</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>$LCM(a, b, c) = L$<br>现在告诉你a, b, L，问你c的最小值是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设$lcm = LCM(a, b)$，即求最小的c使得$LCM(lcm, c) = L$</p>
-<p>设$g = gcd(lcm, c)$，那么$\frac{lcm \asymp c}{g}=L$</p>
-<p>$c = \frac{L}{lcm} \asymp g$</p>
-<p>设$k = \frac{L}{lcm}$，那么$c = k \asymp g$</p>
+<p>设$g = gcd(lcm, c)$，那么$\frac{lcm \times c}{g}=L$</p>
+<p>$c = \frac{L}{lcm} \times g$</p>
+<p>设$k = \frac{L}{lcm}$，那么$c = k \times g$</p>
 <p>又因为$gcd(lcm, c) = g$</p>
-<p>所以$gcd(lcm, k \asymp g) = g$</p>
+<p>所以$gcd(lcm, k \times g) = g$</p>
 <p>即$gcd(\frac{lcm}{g}, k) = 1$</p>
 <p>由于k已知，要使c最小即使g最小，并且$g|lcm$</p>
 <p>那么我们$O(\sqrt{n})$时间找到lcm的最小因子使得$gcd(\frac{lcm}{g}, k) = 1$成立即可</p>
@@ -433,7 +433,7 @@
   <p><span>本文标题:</span><a href="/ZLY201.github.io/2020/07/06/LightOJ%20-%201215/">Finding LCM LightOJ - 1215</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZLY201 的个人博客">ZLY201</a></p>
   <p><span>发布时间:</span>2020年07月06日 - 21:25</p>
-  <p><span>最后更新:</span>2020年07月06日 - 21:48</p>
+  <p><span>最后更新:</span>2020年07月06日 - 21:51</p>
   <p><span>原始链接:</span><a href="/ZLY201.github.io/2020/07/06/LightOJ%20-%201215/" title="Finding LCM LightOJ - 1215">http://zly201.github.io/2020/07/06/LightOJ%20-%201215/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zly201.github.io/2020/07/06/LightOJ%20-%201215/"  aria-label="复制成功！"></i></span>
   </p>
