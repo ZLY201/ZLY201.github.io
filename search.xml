@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Welcome To My Own Blog</title>
-    <url>/ZLY201.github.io/2020/07/03/hellow/</url>
-    <content><![CDATA[<div style="text-align: center">
-    <table>
-        <tr><td colspan="2" style="text-align: center"><font size="4">博主个人信息</font></td></tr>
-        <tr>
-            <td style="text-align: center">姓名</td>
-            <td style="text-align: center">保密</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">性别</td>
-            <td style="text-align: center">反正不是女的</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">年龄</td>
-            <td style="text-align: center">别问，问就是18（orz）</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">学校</td>
-            <td style="text-align: center">中国地质大学（武汉）</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">专业</td>
-            <td style="text-align: center">计算机科学与技术</td>
-        </tr>
-        <tr><td rowspan="4" style="text-align: center">获奖情况</td></tr>
-        <tr><td style="text-align: center">1. 信工学院编程大赛一等奖</td></tr>
-        <tr><td style="text-align: center">2. 中国地质大学（武汉）暨华中地区ICPC邀请赛三等奖</td></tr>
-        <tr><td style="text-align: center">3. 中国地质大学（武汉）数学建模校内选拔赛一等奖</td></tr>
-    </table>
-</div>
-
-<p>欢迎访问我的其他博客主页（可能有惊喜哦）<br><a href="https://blog.csdn.net/weixin_44211980" target="_blank" rel="noopener">csdn博客主页</a><br><a href="https://www.luogu.com.cn/blog/226316/" target="_blank" rel="noopener">luogu博客主页</a></p>
-<p>祝您玩的开心（0^_^0）！</p>
+    <title>Digits of Factorial LightOJ - 1045</title>
+    <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201045/</url>
+    <content><![CDATA[<h2 id="Digits-of-Factorial-LightOJ-1045"><a href="#Digits-of-Factorial-LightOJ-1045" class="headerlink" title="Digits of Factorial LightOJ - 1045"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1045" target="_blank" rel="noopener">Digits of Factorial LightOJ - 1045</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你一个n和m，输出n的阶乘在m进制下的位数</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑n!在m下的位数是k，则有：</p>
+<p>$m^{k+1}\leq n!&lt;m^{k+2}$</p>
+<p>$k+1\leq log_{m}^{n!}&lt;k+2$</p>
+<p>$k+1\leq log_{m}^{1} + log_{m}^{2} + … + log_{m}^{n}&lt;k+2$</p>
+<p>那么预处理处范围内的lg和，最后利用$log_{m}^{n}=\frac {lg^{n}}{lg^{m}}$进行求解即可</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">double</span> sum[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		sum[i] = sum[i - <span class="number">1</span>] + <span class="built_in">log</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> n, m;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">		<span class="keyword">double</span> res = sum[n] / <span class="built_in">log</span>(m);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>, ++cas, <span class="keyword">int</span>(res) + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LightOJ</category>
+      </categories>
+      <tags>
+        <tag>LightOJ</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How Many Points? LightOJ - 1077</title>
+    <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201077/</url>
+    <content><![CDATA[<h2 id="How-Many-Points-LightOJ-1077"><a href="#How-Many-Points-LightOJ-1077" class="headerlink" title="How Many Points? LightOJ - 1077"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1077" target="_blank" rel="noopener">How Many Points? LightOJ - 1077</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你两个坐标，问你这两点连成的线段上坐标均为整数的个数是多少</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑x，y为满足条件的一组坐标，那么有</p>
+<p>$\frac{y_{2}-y_{1}}{x_{2}-x_{1}}=\frac{y-y_{1}}{x-x_{1}}$</p>
+<p>将$(x_{1}, y_{1})$当做坐标原点，则有</p>
+<p>$\frac{y_{2}}{x_{2}}=\frac{y}{x}$</p>
+<p>$\frac{ngcd(y_{2},x_{2})}{mgcd(y_{2},x_{2})}=\frac{n}{m}=\frac{2n}{2m}=…=\frac{ngcd(y_{2},x_{2})}{mgcd(y_{2},x_{2})}$</p>
+<p>那么其总个数即为$gcd(abs(x_{2}-x_{1}), abs(y_{2}-y_{1})) + 1$</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll x, ll y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> y == <span class="number">0</span> ? x : gcd(y, x % y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		ll x1, y1, x2, y2;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld%lld"</span>, &amp;x1, &amp;y1, &amp;x2, &amp;y2);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>, ++cas, gcd(<span class="built_in">abs</span>(x1 - x2), <span class="built_in">abs</span>(y1 - y2)) + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Hellow</category>
+        <category>LightOJ</category>
       </categories>
+      <tags>
+        <tag>LightOJ</tag>
+        <tag>数论</tag>
+      </tags>
   </entry>
   <entry>
     <title>LCM Extreme LightOJ - 1375</title>
@@ -53,6 +51,20 @@
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e6</span> + <span class="number">10</span>;</span><br><span class="line">ll phi[maxn];</span><br><span class="line">ll s[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">eulor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!phi[i]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; maxn; j += i) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!phi[j]) phi[j] = j;</span><br><span class="line">				phi[j] = phi[j] / i * (i - <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> g = <span class="number">1</span>; g &lt; maxn; ++g) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = g; x &lt; maxn; x += g) &#123;</span><br><span class="line">			<span class="keyword">int</span> t = x / g;</span><br><span class="line">			s[x] += phi[t] * t / <span class="number">2</span> * x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		s[i] += s[i - <span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	eulor();</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %llu\n"</span>, ++cas, s[n]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="编写参考"><a href="#编写参考" class="headerlink" title="编写参考"></a>编写参考</h3><p><a href="https://www.cnblogs.com/-Wallace-/p/12897967.html" target="_blank" rel="noopener">https://www.cnblogs.com/-Wallace-/p/12897967.html</a></p>
 ]]></content>
+      <categories>
+        <category>LightOJ</category>
+      </categories>
+      <tags>
+        <tag>LightOJ</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A New Function LightOJ - 1098</title>
+    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201098/</url>
+    <content><![CDATA[<h2 id="A-New-Function-LightOJ-1098"><a href="#A-New-Function-LightOJ-1098" class="headerlink" title="A New Function LightOJ - 1098"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1098" target="_blank" rel="noopener">A New Function LightOJ - 1098</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>定义$SOD(n)$为$n$除$1$和$n$外的所有正因子之和，例如：<br>$SOD(24)=2+3+4+6+8+12=35$<br>定义$CSOD(n)=\sum_{i=1}^{n}SOD(i)$<br>让你求$2e9$内任意n的$CSOD(n)$</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对于每一个数，我们可以把它写成$a \times b$的形式，那么对于答案的贡献显然就是$a+b(a!=b!=1!=n)$，而对于一个因子$i$，它在$n$内被统计的次数应当是$\frac{n}{i}-i+1$，举个例子：<br>假设$n = 12$<br>$i = 2时$<br>$4 = 2 \times 2$<br>$6 = 2 \times 3$<br>$8 = 2 \times 4$<br>$10 = 2 \times 5$<br>$12 = 2 \times 6$<br>$2$需要被统计$\frac{12}{2}-2+1= 5$次<br>但是这样的复杂度是$O(n)$，显然不可行，观察上例，发现右边的因子是连续的，并且根据左边因子的出现次数我们可以得到一个等差数列，这样一来，我们就可以在$O(\sqrt{n})$时间内求出答案</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">		ll res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> k = <span class="built_in">sqrt</span>(n);</span><br><span class="line">		<span class="comment">//枚举左边因子</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">			res += i;	<span class="comment">//单独统计平方数的因子</span></span><br><span class="line">			<span class="comment">//右边因子的等差数列区间</span></span><br><span class="line">			ll l = i + <span class="number">1</span>, r = n / i;</span><br><span class="line">			<span class="keyword">if</span> (r &lt; l) <span class="keyword">continue</span>;</span><br><span class="line">			res += (r - l + <span class="number">1</span>) * i + (r - l + <span class="number">1</span>) * (l + r) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>, ++cas, res);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>LightOJ</category>
       </categories>
@@ -102,56 +114,44 @@
       </tags>
   </entry>
   <entry>
-    <title>A New Function LightOJ - 1098</title>
-    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201098/</url>
-    <content><![CDATA[<h2 id="A-New-Function-LightOJ-1098"><a href="#A-New-Function-LightOJ-1098" class="headerlink" title="A New Function LightOJ - 1098"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1098" target="_blank" rel="noopener">A New Function LightOJ - 1098</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>定义$SOD(n)$为$n$除$1$和$n$外的所有正因子之和，例如：<br>$SOD(24)=2+3+4+6+8+12=35$<br>定义$CSOD(n)=\sum_{i=1}^{n}SOD(i)$<br>让你求$2e9$内任意n的$CSOD(n)$</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对于每一个数，我们可以把它写成$a \times b$的形式，那么对于答案的贡献显然就是$a+b(a!=b!=1!=n)$，而对于一个因子$i$，它在$n$内被统计的次数应当是$\frac{n}{i}-i+1$，举个例子：<br>假设$n = 12$<br>$i = 2时$<br>$4 = 2 \times 2$<br>$6 = 2 \times 3$<br>$8 = 2 \times 4$<br>$10 = 2 \times 5$<br>$12 = 2 \times 6$<br>$2$需要被统计$\frac{12}{2}-2+1= 5$次<br>但是这样的复杂度是$O(n)$，显然不可行，观察上例，发现右边的因子是连续的，并且根据左边因子的出现次数我们可以得到一个等差数列，这样一来，我们就可以在$O(\sqrt{n})$时间内求出答案</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">		ll res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> k = <span class="built_in">sqrt</span>(n);</span><br><span class="line">		<span class="comment">//枚举左边因子</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">			res += i;	<span class="comment">//单独统计平方数的因子</span></span><br><span class="line">			<span class="comment">//右边因子的等差数列区间</span></span><br><span class="line">			ll l = i + <span class="number">1</span>, r = n / i;</span><br><span class="line">			<span class="keyword">if</span> (r &lt; l) <span class="keyword">continue</span>;</span><br><span class="line">			res += (r - l + <span class="number">1</span>) * i + (r - l + <span class="number">1</span>) * (l + r) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>, ++cas, res);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LightOJ</category>
-      </categories>
-      <tags>
-        <tag>LightOJ</tag>
-        <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How Many Points? LightOJ - 1077</title>
-    <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201077/</url>
-    <content><![CDATA[<h2 id="How-Many-Points-LightOJ-1077"><a href="#How-Many-Points-LightOJ-1077" class="headerlink" title="How Many Points? LightOJ - 1077"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1077" target="_blank" rel="noopener">How Many Points? LightOJ - 1077</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你两个坐标，问你这两点连成的线段上坐标均为整数的个数是多少</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑x，y为满足条件的一组坐标，那么有</p>
-<p>$\frac{y_{2}-y_{1}}{x_{2}-x_{1}}=\frac{y-y_{1}}{x-x_{1}}$</p>
-<p>将$(x_{1}, y_{1})$当做坐标原点，则有</p>
-<p>$\frac{y_{2}}{x_{2}}=\frac{y}{x}$</p>
-<p>$\frac{ngcd(y_{2},x_{2})}{mgcd(y_{2},x_{2})}=\frac{n}{m}=\frac{2n}{2m}=…=\frac{ngcd(y_{2},x_{2})}{mgcd(y_{2},x_{2})}$</p>
-<p>那么其总个数即为$gcd(abs(x_{2}-x_{1}), abs(y_{2}-y_{1})) + 1$</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll x, ll y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> y == <span class="number">0</span> ? x : gcd(y, x % y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		ll x1, y1, x2, y2;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld%lld"</span>, &amp;x1, &amp;y1, &amp;x2, &amp;y2);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>, ++cas, gcd(<span class="built_in">abs</span>(x1 - x2), <span class="built_in">abs</span>(y1 - y2)) + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Welcome To My Own Blog</title>
+    <url>/ZLY201.github.io/2020/07/03/hellow/</url>
+    <content><![CDATA[<div style="text-align: center">
+    <table>
+        <tr><td colspan="2" style="text-align: center"><font size="4">博主个人信息</font></td></tr>
+        <tr>
+            <td style="text-align: center">姓名</td>
+            <td style="text-align: center">保密</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">性别</td>
+            <td style="text-align: center">反正不是女的</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">年龄</td>
+            <td style="text-align: center">别问，问就是18（orz）</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">学校</td>
+            <td style="text-align: center">中国地质大学（武汉）</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">专业</td>
+            <td style="text-align: center">计算机科学与技术</td>
+        </tr>
+        <tr><td rowspan="4" style="text-align: center">获奖情况</td></tr>
+        <tr><td style="text-align: center">1. 信工学院编程大赛一等奖</td></tr>
+        <tr><td style="text-align: center">2. 中国地质大学（武汉）暨华中地区ICPC邀请赛三等奖</td></tr>
+        <tr><td style="text-align: center">3. 中国地质大学（武汉）数学建模校内选拔赛一等奖</td></tr>
+    </table>
+</div>
+
+<p>欢迎访问我的其他博客主页（可能有惊喜哦）<br><a href="https://blog.csdn.net/weixin_44211980" target="_blank" rel="noopener">csdn博客主页</a><br><a href="https://www.luogu.com.cn/blog/226316/" target="_blank" rel="noopener">luogu博客主页</a></p>
+<p>祝您玩的开心（0^_^0）！</p>
 ]]></content>
       <categories>
-        <category>LightOJ</category>
+        <category>Hellow</category>
       </categories>
-      <tags>
-        <tag>LightOJ</tag>
-        <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Digits of Factorial LightOJ - 1045</title>
-    <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201045/</url>
-    <content><![CDATA[<h2 id="Digits-of-Factorial-LightOJ-1045"><a href="#Digits-of-Factorial-LightOJ-1045" class="headerlink" title="Digits of Factorial LightOJ - 1045"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1045" target="_blank" rel="noopener">Digits of Factorial LightOJ - 1045</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你一个n和m，输出n的阶乘在m进制下的位数</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑n!在m下的位数是k，则有：</p>
-<p>$m^{k+1}\leq n!&lt;m^{k+2}$</p>
-<p>$k+1\leq log_{m}^{n!}&lt;k+2$</p>
-<p>$k+1\leq log_{m}^{1} + log_{m}^{2} + … + log_{m}^{n}&lt;k+2$</p>
-<p>那么预处理处范围内的lg和，最后利用$log_{m}^{n}=\frac {lg^{n}}{lg^{m}}$进行求解即可</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">double</span> sum[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		sum[i] = sum[i - <span class="number">1</span>] + <span class="built_in">log</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> n, m;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">		<span class="keyword">double</span> res = sum[n] / <span class="built_in">log</span>(m);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>, ++cas, <span class="keyword">int</span>(res) + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LightOJ</category>
-      </categories>
-      <tags>
-        <tag>LightOJ</tag>
-        <tag>数论</tag>
-      </tags>
   </entry>
   <entry>
     <title>唯一分解定理</title>
@@ -162,7 +162,7 @@
 <p>那么有如下结论</p>
 <ol>
 <li>设$F(n)$代表n的正因子数目，则$F(n) = (a_{1}+ 1)(a_{2} + 1)(a_{3} + 1)…(a_{n} + 1)$</li>
-<li>设$G(n)$代表n的正因子之和，则<br>$G(n) = (1 + p_{1} + p_{1}^{3}+…+p_{1}^{a_{1}})(1 + p_{2} + p_{2}^{2}+…+p_{2}^{a_{2}})…(1 + p_{k} + p_{2}^{3}+…+p_{k}^{a_{k}})=\prod_{i=1}^{n}(\frac{p_{i}^{a_{i}}-1}{p_{i}-1})$</li>
+<li>设$G(n)$代表n的正因子之和，则<br>$G(n) = (1 + p_{1} + p_{1}^{2}+…+p_{1}^{a_{1}})(1 + p_{2} + p_{2}^{2}+…+p_{2}^{a_{2}})…(1 + p_{k} + p_{2}^{3}+…+p_{k}^{a_{k}})=\prod_{i=1}^{n}(\frac{p_{i}^{a_{i}}-1}{p_{i}-1})$</li>
 </ol>
 <h2 id="例题：Trailing-Zeroes-I-LightOJ-1028"><a href="#例题：Trailing-Zeroes-I-LightOJ-1028" class="headerlink" title="例题：Trailing Zeroes (I) LightOJ - 1028"></a>例题：<a href="http://http://lightoj.com/volume_showproblem.php?problem=1028" target="_blank" rel="noopener">Trailing Zeroes (I) LightOJ - 1028</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有多组输入，每次给你一个正整数n，问你n的除1之外的正因子数目</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>因为有多组输入，那么如果对于每一个n进行暴力统计显然会超时，可以先预处理出$10^{6}$以内的质数，然后对n进行质数分解，使用公式1进行求解</p>
