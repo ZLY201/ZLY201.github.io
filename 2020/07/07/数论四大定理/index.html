@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://zly201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/%E6%8B%93%E5%B1%95%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86-1.png">
 <meta property="og:image" content="http://zly201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/%E6%8B%93%E5%B1%95%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86-2.png">
 <meta property="article:published_time" content="2020-07-07T13:24:50.000Z">
-<meta property="article:modified_time" content="2020-07-07T15:08:22.784Z">
+<meta property="article:modified_time" content="2020-07-07T15:14:48.012Z">
 <meta property="article:author" content="ZLY201">
 <meta property="article:tag" content="数论">
 <meta name="twitter:card" content="summary">
@@ -422,10 +422,9 @@
 <blockquote>
 <p>“今有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二，问物几何？”</p>
 </blockquote>
-<p>意思就是有一个数模3余2，模5余3，模7余2，问你这个数是多少</p>
-<p>这类问题在数论中我们把它称作一元线性同余方程组问题，数学公式表述如下：</p>
-<p>$x \equiv {a_{1}} \pmod {m_{1}}$<br>$x \equiv {a_{2}} \pmod {m_{2}}$<br>$…$<br>$x \equiv {a_{n}} \pmod {m_{n}}$<br>其中$m_{1}, m_{2}, …, m_{n}两两互质$<br>求x的最小非负整数解</p>
-<h3 id="求解-1"><a href="#求解-1" class="headerlink" title="求解"></a>求解</h3><p>令$M=\prod_{i=1}{n}m_{i}$，即$M=lcm(m_{1}, m_{2}, …, m_{n})$<br>设$t_{i}$为$\frac{M}{n}t_{i} \equiv {1} \pmod {m_{i}}$的最小非负整数解<br>那么$x = \sum_{i=1}{n}a_{i}\frac{M}{m_{i}}t_{i}$为同余方程组的最小非负整数解<br>而$t_{i}$显然为$\frac{M}{n}t_{i} \equiv {1} \pmod {m_{i}}$关于$m_{i}$的逆元（因为$\frac{M}{n}t_{i} \equiv {1} \pmod {m_{i}}$）</p>
+<p>意思就是有一个数除3余2，除5余3，除7余2，问你这个数是多少</p>
+<p>这类问题在数论中我们把它称作一元线性同余方程组问题，数学公式表述如下：<br>$x \equiv {a_{1}} \pmod {m_{1}}$<br>$x \equiv {a_{2}} \pmod {m_{2}}$<br>$…$<br>$x \equiv {a_{n}} \pmod {m_{n}}$<br>其中$m_{1}, m_{2}, …, m_{n}两两互质$<br>求x的最小非负整数解</p>
+<h3 id="求解-1"><a href="#求解-1" class="headerlink" title="求解"></a>求解</h3><p>令$M=\prod_{i=1}^{n}m_{i}$，即$M=lcm(m_{1}, m_{2}, …, m_{n})$<br>设$t_{i}$为$\frac{M}{n}t_{i} \equiv {1} \pmod {m_{i}}$的最小非负整数解<br>那么$x = \sum_{i=1}^{n}a_{i}\frac{M}{m_{i}}t_{i}$为同余方程组的最小非负整数解<br>而$t_{i}$显然为$\frac{M}{n}t_{i} \equiv {1} \pmod {m_{i}}$关于$m_{i}$的逆元（因为$\frac{M}{n}t_{i} \equiv {1} \pmod {m_{i}}$）</p>
 <h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h3><p>将$x$带入到第$k$个方程中<br>对于$\forall i \neq k$，$a_{i}\frac{M}{m_{i}}t_{i} \equiv {0} \pmod {m_{k}}$，因为$\frac{M}{m_{i}} \bmod m_{k} = 0$<br>对于$i = k$，由于$\frac{M}{n}t_{i} \equiv {1} \pmod {m_{i}}$，那么自然$a_{i}\frac{M}{m_{i}}t_{i} \equiv {a_{i}} \pmod {m_{k}}$，即得证</p>
 <h3 id="Code-2"><a href="#Code-2" class="headerlink" title="Code"></a>Code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">pair&lt;ll, ll&gt; exgcd(ll a, ll b) &#123;</span><br><span class="line">	<span class="keyword">if</span> (!b) <span class="keyword">return</span> pair&lt;ll, ll&gt;(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	pair&lt;ll, ll&gt; temp = exgcd(b, a % b);</span><br><span class="line">	<span class="keyword">return</span> pair&lt;ll, ll&gt;(temp.second, temp.first - a / b * temp.second);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">CRT</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	ll M = <span class="number">1</span>, res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) M *= m[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		ll tmp = M / m[i];</span><br><span class="line">		pair&lt;ll, ll&gt; pp = exgcd(tmp, m[i]);</span><br><span class="line">		res = (res + a[i] * pp.first % M * tmp % M) % M;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (res + M) % M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="拓展中国剩余定理"><a href="#拓展中国剩余定理" class="headerlink" title="拓展中国剩余定理"></a>拓展中国剩余定理</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>$x \equiv {a_{1}} \pmod {m_{1}}$<br>$x \equiv {a_{2}} \pmod {m_{2}}$<br>$…$<br>$x \equiv {a_{n}} \pmod {m_{n}}$<br>不保证$m_{1}, m_{2}, …, m_{n}两两互质$<br>求x的最小非负整数解</p>
@@ -452,7 +451,7 @@
   <p><span>本文标题:</span><a href="/ZLY201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/">数论四大定理</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZLY201 的个人博客">ZLY201</a></p>
   <p><span>发布时间:</span>2020年07月07日 - 21:24</p>
-  <p><span>最后更新:</span>2020年07月07日 - 23:08</p>
+  <p><span>最后更新:</span>2020年07月07日 - 23:14</p>
   <p><span>原始链接:</span><a href="/ZLY201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/" title="数论四大定理">http://zly201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zly201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/"  aria-label="复制成功！"></i></span>
   </p>
