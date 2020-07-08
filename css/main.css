@@ -1830,7 +1830,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffe2cb;
+  background: #d40518;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3177,10 +3177,10 @@ pre .javascript .function {
   cursor: pointer;
 }
 .close:after {
-  content: "▼";
+  content: "▼View/Hide Code";
 }
 .open:after {
-  content: "▲";
+  content: "▲View/Hide Code";
 }
 .post-body div.fold_hider {
   margin-left: 1.5em;
