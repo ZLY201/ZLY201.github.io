@@ -1830,7 +1830,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #394091;
+  background: #1d363e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3172,19 +3172,19 @@ pre .javascript .function {
 .highlight:hover .btn-copy {
   opacity: 1;
 }
+.btn-copy span {
+  margin-left: 5px;
+}
+.highlight:hover .btn-copy {
+  opacity: 1;
+}
 .hider_title {
   font-family: "Microsoft Yahei";
   cursor: pointer;
 }
 .close:after {
-  content: "▼";
+  content: "▼View Code";
 }
 .open:after {
-  content: "▲";
-}
-.post-body div.fold_hider {
-  margin-left: 1.5em;
-}
-.post-body div.fold {
-  margin-top: -15px;
+  content: "▲Hide Code";
 }
