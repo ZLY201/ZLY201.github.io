@@ -92,14 +92,14 @@
 
 
 
-<meta name="description" content="青蛙的约会 POJ - 1061题目大意两只青蛙在L长的圆形跑道上玩跳跳乐，青蛙A的出发点坐标为x，一次能跳m米，青蛙B的出发点坐标y，一次能跳n米，他们跳一次时间相同，同时起跳，问你跳几次能相遇 解题思路设t次后相遇$x + mt \equiv {y + nt} \pmod {L}$$(x + mt) - (y + nt) &#x3D; qL$$(m - n)t - qL &#x3D; (y - x)$$(m -">
+<meta name="description" content="青蛙的约会 POJ - 1061题目大意两只青蛙在L长的圆形跑道上玩跳跳乐，青蛙A的出发点坐标为x，一次能跳m米，青蛙B的出发点坐标y，一次能跳n米，他们跳一次时间相同，同时起跳，问你跳几次能相遇 解题思路设$t$次后相遇$x + mt \equiv {y + nt} \pmod {L}$$(x + mt) - (y + nt) &#x3D; qL$$(m - n)t - qL &#x3D; (y - x)$$(n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="青蛙的约会 POJ - 1061">
 <meta property="og:url" content="http://zly201.github.io/2020/07/08/POJ%20-%201061/index.html">
 <meta property="og:site_name" content="ZLY201&#39;s Blog">
-<meta property="og:description" content="青蛙的约会 POJ - 1061题目大意两只青蛙在L长的圆形跑道上玩跳跳乐，青蛙A的出发点坐标为x，一次能跳m米，青蛙B的出发点坐标y，一次能跳n米，他们跳一次时间相同，同时起跳，问你跳几次能相遇 解题思路设t次后相遇$x + mt \equiv {y + nt} \pmod {L}$$(x + mt) - (y + nt) &#x3D; qL$$(m - n)t - qL &#x3D; (y - x)$$(m -">
+<meta property="og:description" content="青蛙的约会 POJ - 1061题目大意两只青蛙在L长的圆形跑道上玩跳跳乐，青蛙A的出发点坐标为x，一次能跳m米，青蛙B的出发点坐标y，一次能跳n米，他们跳一次时间相同，同时起跳，问你跳几次能相遇 解题思路设$t$次后相遇$x + mt \equiv {y + nt} \pmod {L}$$(x + mt) - (y + nt) &#x3D; qL$$(m - n)t - qL &#x3D; (y - x)$$(n">
 <meta property="article:published_time" content="2020-07-08T15:59:30.000Z">
-<meta property="article:modified_time" content="2020-07-08T16:27:22.514Z">
+<meta property="article:modified_time" content="2020-07-09T06:18:26.187Z">
 <meta property="article:author" content="ZLY201">
 <meta property="article:tag" content="数论">
 <meta property="article:tag" content="POJ">
@@ -407,7 +407,7 @@
 
       
         <h2 id="青蛙的约会-POJ-1061"><a href="#青蛙的约会-POJ-1061" class="headerlink" title="青蛙的约会 POJ - 1061"></a><a href="http://poj.org/problem?id=1061" target="_blank" rel="noopener">青蛙的约会 POJ - 1061</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>两只青蛙在L长的圆形跑道上玩跳跳乐，青蛙A的出发点坐标为x，一次能跳m米，青蛙B的出发点坐标y，一次能跳n米，他们跳一次时间相同，同时起跳，问你跳几次能相遇</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设t次后相遇<br>$x + mt \equiv {y + nt} \pmod {L}$<br>$(x + mt) - (y + nt) = qL$<br>$(m - n)t - qL = (y - x)$<br>$(m - n)t + qL = (x - y)$<br>是不是长得很像$ax + by = c$<br>用拓展欧几里得定理求解t即可</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设$t$次后相遇<br>$x + mt \equiv {y + nt} \pmod {L}$<br>$(x + mt) - (y + nt) = qL$<br>$(m - n)t - qL = (y - x)$<br>$(n - m)t + qL = (x - y)$<br>是不是长得很像$ax + by = c$<br>用拓展欧几里得定理求解t即可</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a, ll b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> !b ? a : gcd(b, a % b);</span><br><span class="line">&#125;</span><br><span class="line">pair&lt;ll, ll&gt; exgcd(ll a, ll b) &#123;</span><br><span class="line">	<span class="keyword">if</span> (!b) <span class="keyword">return</span> pair&lt;ll, ll&gt;(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	pair&lt;ll, ll&gt; temp = exgcd(b, a % b);</span><br><span class="line">	<span class="keyword">return</span> pair&lt;ll, ll&gt;(temp.second, temp.first - a / b * temp.second);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	ll x, y, m, n, l;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; x &gt;&gt; y &gt;&gt; m &gt;&gt; n &gt;&gt; l;</span><br><span class="line">	ll a = n - m, b = l;</span><br><span class="line">	ll g = gcd(a, b);</span><br><span class="line">	ll delta = x - y;</span><br><span class="line">	<span class="keyword">if</span> (delta % g) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Impossible\n"</span>;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		pair&lt;ll, ll&gt; pp = exgcd(a, b);</span><br><span class="line">		ll t = pp.first, p = pp.second;</span><br><span class="line">		ll mod = l / g;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; (delta / g * t % mod + mod) % mod &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div></div>
@@ -1177,8 +1177,7 @@
   
     <!-- 代码块复制功能 -->
     <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
-    <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
-<script src="/ZLY201.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/ZLY201.github.io/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="/js/src/clipboard-use.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1195,5 +1194,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+<script src="/ZLY201.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/ZLY201.github.io/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
 </html>
