@@ -41,6 +41,72 @@
       </categories>
   </entry>
   <entry>
+    <title>Max Sum Plus Plus HDU - 1024</title>
+    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201024/</url>
+    <content><![CDATA[<h2 id="Max-Sum-Plus-Plus-HDU-1024"><a href="#Max-Sum-Plus-Plus-HDU-1024" class="headerlink" title="Max Sum Plus Plus HDU - 1024"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1024" target="_blank" rel="noopener">Max Sum Plus Plus HDU - 1024</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将$n$个数分成$m$组互不相交的连续子序列（$m$组不一定包含所有数），问你这$m$组的和最大是多少</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>假设前$i$个数已经分成了$j$组，那么第$i$个数可以分到$j$组中的任意一组或者变成第$j+1$组的第一个数<br>由此我们定义$dp[i][j]$为前$i$个数分成$j$组的最大值，那么转移方程为：<br>$dp[i][j]=max(dp[i-1][j] + a[i], (max_{k=1}^{i-1}dp[k][j-1]) + a[i])$<br>其中$dp[i-1][j] + a[i]$表示将第$i$个数分到前$j$组中的任意一组，$(max_{k=1}^{i-1}dp[k][j-1]) + a[i]$表示将第$i$个数自成一组并合并到前$k$个数分成$j-1$组中最大的情况中</p>
+<p>但是这样做的时间复杂度是$O(mn^{2})$，显然不符合要求</p>
+<p>观察上式，我们发现$max_{k=1}^{i-1}dp[k][j-1]$由于与$j-1$之前的情况无关，所以并不用每一次都重新计算，而是在统计组数为$j-1$时将其记录下来即可</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line">ll a[maxn];</span><br><span class="line">ll dp[maxn];</span><br><span class="line">ll mmax[maxn];	<span class="comment">//实时记录组数为j-1的情况</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> m, n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; m &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">			dp[i] = mmax[i] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">			ll Max = LLONG_MIN;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = j; i &lt;= n; ++i) &#123;</span><br><span class="line">				dp[i] = max(dp[i - <span class="number">1</span>], mmax[i - <span class="number">1</span>]) + a[i];</span><br><span class="line">				<span class="comment">//注意下面两个语句不能颠倒，因为这会影响下一次的循环（i + 1的情况）</span></span><br><span class="line">				mmax[i - <span class="number">1</span>] = Max;</span><br><span class="line">				Max = max(Max, dp[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ll res = LLONG_MIN;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = m; i &lt;= n; ++i) &#123;</span><br><span class="line">			res = max(dp[i], res);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>HDU</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>免费馅饼 HDU - 1176</title>
+    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201176/</url>
+    <content><![CDATA[<h2 id="免费馅饼-HDU-1176"><a href="#免费馅饼-HDU-1176" class="headerlink" title="免费馅饼 HDU - 1176"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1176" target="_blank" rel="noopener">免费馅饼 HDU - 1176</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有一条坐标轴，范围为$[0, 10]$，有$n$个馅饼分别会在$t_{i}$秒落在$x_{i}$的位置，你的初始位置为5，每秒能向左或向右移动一格，问你你能拾取的最大数量的馅饼个数是多少</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于你每次只能向左或向右移动一格，那么在$t$秒你有三种可选择的状态：</p>
+<ol>
+<li>保持不动</li>
+<li>向左移动一格</li>
+<li>向右移动一格</li>
+</ol>
+<p>所以我们可以定义$dp[i][j]$为第$i$秒在$j$位置处所拾取的最大馅饼数目，那么转移方程即为：<br>$dp[i][j]=dp[i][j]+max(max(dp[i+1][j-1],dp[i+1][j+1]),dp[i+1][j])$</p>
+<p>初始条件为$dp[i][j]=\sum_{k=1}{n}(t_{k} == i &amp;&amp; x_{k} == j)$</p>
+<p>还需注意的是我们枚举时间需要从后往前枚举，因为如果从$t=0$开始枚举的话最终的状态是不确定的，就是说你的位置是不确定的，而由于初始状态为$x=5$，所以从后往前枚举是可行的</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][<span class="number">15</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!n) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">int</span> Time = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="keyword">int</span> x, t;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; x &gt;&gt; t;</span><br><span class="line">			++dp[t][x];</span><br><span class="line">			Time = max(Time, t);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = Time - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">10</span>; ++j) &#123;</span><br><span class="line">				dp[i][j] += max(max(dp[i + <span class="number">1</span>][j - <span class="number">1</span>], dp[i + <span class="number">1</span>][j + <span class="number">1</span>]), dp[i + <span class="number">1</span>][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; dp[<span class="number">0</span>][<span class="number">5</span>] &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>HDU</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tickets HDU - 1260</title>
+    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201260/</url>
+    <content><![CDATA[<h2 id="Tickets-HDU-1260"><a href="#Tickets-HDU-1260" class="headerlink" title="Tickets HDU - 1260"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1260" target="_blank" rel="noopener">Tickets HDU - 1260</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有$k$个人去电影院买票，第$i$个人的买票时间为$a[i]$，第$i$和第$i+1$个人一起买票的时间为$b[i]$，问你最少花多长时间可以把票卖完</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑第i个人的状态有：</p>
+<ol>
+<li>单独卖票</li>
+<li>和前一个人一起卖票</li>
+</ol>
+<p>那么我用$dp[i]$表示前i个人卖票所花的最短时间，其状态转移方程为<br>$dp[i]=min(dp[i-1]+a[i],dp[i-2]+b[i-1])$<br>初始条件为$dp[1]=a[1]$</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2010</span>], b[<span class="number">2010</span>];</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">2010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; ++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; ++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;b[i]);</span><br><span class="line">		dp[<span class="number">1</span>] = a[<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">			dp[i] = min(dp[i - <span class="number">1</span>] + a[i], dp[i - <span class="number">2</span>] + b[i - <span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ss = dp[k] % <span class="number">60</span>;</span><br><span class="line">		<span class="keyword">int</span> mm = dp[k] / <span class="number">60</span> % <span class="number">60</span>;</span><br><span class="line">		<span class="keyword">int</span> hh = <span class="number">8</span> + dp[k] / <span class="number">60</span> / <span class="number">60</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%02d:%02d:%02d %s\n"</span>, hh, mm, ss, (hh &gt; <span class="number">12</span> ? <span class="string">"pm"</span> : <span class="string">"am"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>HDU</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Interesting Yang Hui Triangle POJ - 3146</title>
     <url>/ZLY201.github.io/2020/07/09/POJ%20-%203146/</url>
     <content><![CDATA[<h2 id="Interesting-Yang-Hui-Triangle-POJ-3146"><a href="#Interesting-Yang-Hui-Triangle-POJ-3146" class="headerlink" title="Interesting Yang Hui Triangle POJ - 3146"></a><a href="http://poj.org/problem?id=3146" target="_blank" rel="noopener">Interesting Yang Hui Triangle POJ - 3146</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>问你杨辉三角第n行有多少个数不能被p整除</p>
@@ -244,9 +310,9 @@
       </categories>
       <tags>
         <tag>LightOJ</tag>
+        <tag>数学</tag>
         <tag>数论</tag>
         <tag>欧几里得定理</tag>
-        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
