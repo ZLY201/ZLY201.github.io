@@ -119,8 +119,8 @@
         <category>NewCoder</category>
       </categories>
       <tags>
-        <tag>数学</tag>
         <tag>数论</tag>
+        <tag>数学</tag>
         <tag>NewCoder</tag>
         <tag>乘法逆元</tag>
       </tags>
@@ -536,9 +536,9 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
       </categories>
       <tags>
         <tag>LightOJ</tag>
-        <tag>数学</tag>
         <tag>数论</tag>
         <tag>欧几里得定理</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
