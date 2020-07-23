@@ -1,50 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>FatMouse&#39;s Speed HDU - 1160</title>
-    <url>/ZLY201.github.io/2020/07/12/HDU%20-%201160/</url>
-    <content><![CDATA[<h2 id="FatMouse’s-Speed-HDU-1160"><a href="#FatMouse’s-Speed-HDU-1160" class="headerlink" title="FatMouse’s Speed HDU - 1160"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1160" target="_blank" rel="noopener">FatMouse’s Speed HDU - 1160</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你$1-k$每个人的$W$和$S$，让你构造一个$W[m[1]] &lt; W[m[2]] &lt; … &lt; W[m[n]]$和$S[m[1]] &gt; S[m[2]] &gt; … &gt; S[m[n]]$的序列，其中$m$为每个人的标号，输出$n$和序列$m$</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将数组按照$W$优先降序，$S$优先升序（一会说为什么反过来）排序，$dp[i]$表示以$i$为结尾的序列最大长度，那么对于$\forall j &lt; i,\ 如果W[i] &lt; W[j] \ \&amp;\&amp; \ S[i] &gt; S[j]$，那么$dp[i] = max(dp[j]) + 1$，我们可以使用类似于并查集的数组反向记录$dp[j] + 1&gt;dp[i]$的$j$的标号，然后回溯输出序列，由于这样记录下来的序列是反向的，所以前面我们需要将比较条件反过来排序</p>
-<p>注：这题比较坑的是输入，cin是从后往前运行的，所以++cnt要放在后面，而且读入EOF会使得cnt多加一次，所以读完后要将其减一</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> w, s, id;</span><br><span class="line">&#125;a[<span class="number">1010</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Node a, Node b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (a.w == b.w) <span class="keyword">return</span> a.s &lt; b.s;</span><br><span class="line">	<span class="keyword">return</span> a.w &gt; b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">1010</span>], pre[<span class="number">1010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a[cnt].w, &amp;a[++cnt].s)) a[cnt].id = cnt;</span><br><span class="line">	--cnt;</span><br><span class="line">	sort(a + <span class="number">1</span>, a + cnt + <span class="number">1</span>, cmp);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= cnt; ++i) &#123;</span><br><span class="line">		dp[i] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= cnt; ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (a[i].w &lt; a[j].w &amp;&amp; a[i].s &gt; a[j].s &amp;&amp; dp[i] &lt; dp[j] + <span class="number">1</span>) &#123;</span><br><span class="line">				dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">				pre[i] = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (dp[i] &gt; dp[pos]) pos = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[pos]);</span><br><span class="line">	<span class="keyword">while</span> (pos) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[pos].id);</span><br><span class="line">		pos = pre[pos];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>
-]]></content>
-      <categories>
-        <category>HDU</category>
-      </categories>
-      <tags>
-        <tag>HDU</tag>
-        <tag>动态规划</tag>
-        <tag>最长上升子序列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>免费馅饼 HDU - 1176</title>
-    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201176/</url>
-    <content><![CDATA[<h2 id="免费馅饼-HDU-1176"><a href="#免费馅饼-HDU-1176" class="headerlink" title="免费馅饼 HDU - 1176"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1176" target="_blank" rel="noopener">免费馅饼 HDU - 1176</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有一条坐标轴，范围为$[0, 10]$，有$n$个馅饼分别会在$t_{i}$秒落在$x_{i}$的位置，你的初始位置为5，每秒能向左或向右移动一格，问你你能拾取的最大数量的馅饼个数是多少</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于你每次只能向左或向右移动一格，那么在$t$秒你有三种可选择的状态：</p>
-<ol>
-<li>保持不动</li>
-<li>向左移动一格</li>
-<li>向右移动一格</li>
-</ol>
-<p>所以我们可以定义$dp[i][j]$为第$i$秒在$j$位置处所拾取的最大馅饼数目，那么转移方程即为：</p>
-<script type="math/tex; mode=display">dp[i][j]=dp[i][j]+max(max(dp[i+1][j-1],dp[i+1][j+1]),dp[i+1][j])</script><p>初始条件为$dp[i][j]=\sum_{k=1}^{n}(t_{k} == i\  \&amp;\&amp; \ x_{k} == j)$</p>
-<p>还需注意的是我们枚举时间需要从后往前枚举，因为如果从$t=0$开始枚举的话最终的状态是不确定的，就是说你的位置是不确定的，而由于初始状态为$x=5$，所以从后往前枚举是可行的</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][<span class="number">15</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!n) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">int</span> Time = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="keyword">int</span> x, t;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; x &gt;&gt; t;</span><br><span class="line">			++dp[t][x];</span><br><span class="line">			Time = max(Time, t);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = Time - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">10</span>; ++j) &#123;</span><br><span class="line">				dp[i][j] += max(max(dp[i + <span class="number">1</span>][j - <span class="number">1</span>], dp[i + <span class="number">1</span>][j + <span class="number">1</span>]), dp[i + <span class="number">1</span>][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; dp[<span class="number">0</span>][<span class="number">5</span>] &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>
-]]></content>
-      <categories>
-        <category>HDU</category>
-      </categories>
-      <tags>
-        <tag>HDU</tag>
-        <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2020牛客暑期多校训练营（第三场）</title>
     <url>/ZLY201.github.io/2020/07/19/2020%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%89%E5%9C%BA%EF%BC%89/</url>
     <content><![CDATA[<h1 id="2020牛客暑期多校训练营（第三场）"><a href="#2020牛客暑期多校训练营（第三场）" class="headerlink" title="2020牛客暑期多校训练营（第三场）"></a><a href="https://ac.nowcoder.com/acm/contest/5668#question" target="_blank" rel="noopener">2020牛客暑期多校训练营（第三场）</a></h1><h2 id="B-Classical-String-Problem"><a href="#B-Classical-String-Problem" class="headerlink" title="B.Classical String Problem"></a>B.Classical String Problem</h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个字符串，有两种操作，一种是问你第$x$个字符是什么，第二种是将前$x(x &gt; 0)$字符移动到末尾，或者将后$x(x &lt; 0)$移动到开头</p>
@@ -95,18 +51,15 @@
       </tags>
   </entry>
   <entry>
-    <title>Tickets HDU - 1260</title>
-    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201260/</url>
-    <content><![CDATA[<h2 id="Tickets-HDU-1260"><a href="#Tickets-HDU-1260" class="headerlink" title="Tickets HDU - 1260"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1260" target="_blank" rel="noopener">Tickets HDU - 1260</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有$k$个人去电影院买票，第$i$个人的买票时间为$a[i]$，第$i$和第$i+1$个人一起买票的时间为$b[i]$，问你最少花多长时间可以把票卖完</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑第i个人的状态有：</p>
-<ol>
-<li>单独卖票</li>
-<li>和前一个人一起卖票</li>
-</ol>
-<p>那么我用$dp[i]$表示前i个人卖票所花的最短时间，其状态转移方程为:</p>
-<script type="math/tex; mode=display">dp[i]=min(dp[i-1]+a[i],dp[i-2]+b[i-1])</script><p>初始条件为$dp[1]=a[1]$</p>
+    <title>Max Sum Plus Plus HDU - 1024</title>
+    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201024/</url>
+    <content><![CDATA[<h2 id="Max-Sum-Plus-Plus-HDU-1024"><a href="#Max-Sum-Plus-Plus-HDU-1024" class="headerlink" title="Max Sum Plus Plus HDU - 1024"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1024" target="_blank" rel="noopener">Max Sum Plus Plus HDU - 1024</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将$n$个数分成$m$组互不相交的连续子序列（$m$组不一定包含所有数），问你这$m$组的和最大是多少</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>假设前$i$个数已经分成了$j$组，那么第$i$个数可以分到$j$组中的任意一组或者变成第$j+1$组的第一个数<br>由此我们定义$dp[i][j]$为前$i$个数分成$j$组的最大值，那么转移方程为：</p>
+<script type="math/tex; mode=display">dp[i][j]=max(dp[i-1][j] + a[i], (max_{k=1}^{i-1}dp[k][j-1]) + a[i])</script><p>其中$dp[i-1][j] + a[i]$表示将第$i$个数分到前$j$组中的任意一组，$(max_{k=1}^{i-1}dp[k][j-1]) + a[i]$表示将第$i$个数自成一组并合并到前$k$个数分成$j-1$组中最大的情况中</p>
+<p>但是这样做的时间复杂度是$O(mn^{2})$，显然不符合要求</p>
+<p>观察上式，我们发现$max_{k=1}^{i-1}dp[k][j-1]$由于与$j-1$之前的情况无关，所以并不用每一次都重新计算，而是在统计组数为$j-1$时将其记录下来即可</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2010</span>], b[<span class="number">2010</span>];</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">2010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; ++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; ++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;b[i]);</span><br><span class="line">		dp[<span class="number">1</span>] = a[<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">			dp[i] = min(dp[i - <span class="number">1</span>] + a[i], dp[i - <span class="number">2</span>] + b[i - <span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ss = dp[k] % <span class="number">60</span>;</span><br><span class="line">		<span class="keyword">int</span> mm = dp[k] / <span class="number">60</span> % <span class="number">60</span>;</span><br><span class="line">		<span class="keyword">int</span> hh = <span class="number">8</span> + dp[k] / <span class="number">60</span> / <span class="number">60</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%02d:%02d:%02d %s\n"</span>, hh, mm, ss, (hh &gt; <span class="number">12</span> ? <span class="string">"pm"</span> : <span class="string">"am"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line">ll a[maxn];</span><br><span class="line">ll dp[maxn];</span><br><span class="line">ll mmax[maxn];	<span class="comment">//实时记录组数为j-1的情况</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> m, n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; m &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">			dp[i] = mmax[i] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">			ll Max = LLONG_MIN;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = j; i &lt;= n; ++i) &#123;</span><br><span class="line">				dp[i] = max(dp[i - <span class="number">1</span>], mmax[i - <span class="number">1</span>]) + a[i];</span><br><span class="line">				<span class="comment">//注意下面两个语句不能颠倒，因为这会影响下一次的循环（i + 1的情况）</span></span><br><span class="line">				mmax[i - <span class="number">1</span>] = Max;</span><br><span class="line">				Max = max(Max, dp[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ll res = LLONG_MIN;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = m; i &lt;= n; ++i) &#123;</span><br><span class="line">			res = max(dp[i], res);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div></div>
 ]]></content>
       <categories>
@@ -118,15 +71,57 @@
       </tags>
   </entry>
   <entry>
-    <title>Max Sum Plus Plus HDU - 1024</title>
-    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201024/</url>
-    <content><![CDATA[<h2 id="Max-Sum-Plus-Plus-HDU-1024"><a href="#Max-Sum-Plus-Plus-HDU-1024" class="headerlink" title="Max Sum Plus Plus HDU - 1024"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1024" target="_blank" rel="noopener">Max Sum Plus Plus HDU - 1024</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将$n$个数分成$m$组互不相交的连续子序列（$m$组不一定包含所有数），问你这$m$组的和最大是多少</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>假设前$i$个数已经分成了$j$组，那么第$i$个数可以分到$j$组中的任意一组或者变成第$j+1$组的第一个数<br>由此我们定义$dp[i][j]$为前$i$个数分成$j$组的最大值，那么转移方程为：</p>
-<script type="math/tex; mode=display">dp[i][j]=max(dp[i-1][j] + a[i], (max_{k=1}^{i-1}dp[k][j-1]) + a[i])</script><p>其中$dp[i-1][j] + a[i]$表示将第$i$个数分到前$j$组中的任意一组，$(max_{k=1}^{i-1}dp[k][j-1]) + a[i]$表示将第$i$个数自成一组并合并到前$k$个数分成$j-1$组中最大的情况中</p>
-<p>但是这样做的时间复杂度是$O(mn^{2})$，显然不符合要求</p>
-<p>观察上式，我们发现$max_{k=1}^{i-1}dp[k][j-1]$由于与$j-1$之前的情况无关，所以并不用每一次都重新计算，而是在统计组数为$j-1$时将其记录下来即可</p>
+    <title>FatMouse&#39;s Speed HDU - 1160</title>
+    <url>/ZLY201.github.io/2020/07/12/HDU%20-%201160/</url>
+    <content><![CDATA[<h2 id="FatMouse’s-Speed-HDU-1160"><a href="#FatMouse’s-Speed-HDU-1160" class="headerlink" title="FatMouse’s Speed HDU - 1160"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1160" target="_blank" rel="noopener">FatMouse’s Speed HDU - 1160</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你$1-k$每个人的$W$和$S$，让你构造一个$W[m[1]] &lt; W[m[2]] &lt; … &lt; W[m[n]]$和$S[m[1]] &gt; S[m[2]] &gt; … &gt; S[m[n]]$的序列，其中$m$为每个人的标号，输出$n$和序列$m$</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将数组按照$W$优先降序，$S$优先升序（一会说为什么反过来）排序，$dp[i]$表示以$i$为结尾的序列最大长度，那么对于$\forall j &lt; i,\ 如果W[i] &lt; W[j] \ \&amp;\&amp; \ S[i] &gt; S[j]$，那么$dp[i] = max(dp[j]) + 1$，我们可以使用类似于并查集的数组反向记录$dp[j] + 1&gt;dp[i]$的$j$的标号，然后回溯输出序列，由于这样记录下来的序列是反向的，所以前面我们需要将比较条件反过来排序</p>
+<p>注：这题比较坑的是输入，cin是从后往前运行的，所以++cnt要放在后面，而且读入EOF会使得cnt多加一次，所以读完后要将其减一</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line">ll a[maxn];</span><br><span class="line">ll dp[maxn];</span><br><span class="line">ll mmax[maxn];	<span class="comment">//实时记录组数为j-1的情况</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> m, n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; m &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">			dp[i] = mmax[i] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">			ll Max = LLONG_MIN;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = j; i &lt;= n; ++i) &#123;</span><br><span class="line">				dp[i] = max(dp[i - <span class="number">1</span>], mmax[i - <span class="number">1</span>]) + a[i];</span><br><span class="line">				<span class="comment">//注意下面两个语句不能颠倒，因为这会影响下一次的循环（i + 1的情况）</span></span><br><span class="line">				mmax[i - <span class="number">1</span>] = Max;</span><br><span class="line">				Max = max(Max, dp[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ll res = LLONG_MIN;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = m; i &lt;= n; ++i) &#123;</span><br><span class="line">			res = max(dp[i], res);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> w, s, id;</span><br><span class="line">&#125;a[<span class="number">1010</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Node a, Node b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (a.w == b.w) <span class="keyword">return</span> a.s &lt; b.s;</span><br><span class="line">	<span class="keyword">return</span> a.w &gt; b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">1010</span>], pre[<span class="number">1010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a[cnt].w, &amp;a[++cnt].s)) a[cnt].id = cnt;</span><br><span class="line">	--cnt;</span><br><span class="line">	sort(a + <span class="number">1</span>, a + cnt + <span class="number">1</span>, cmp);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= cnt; ++i) &#123;</span><br><span class="line">		dp[i] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= cnt; ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (a[i].w &lt; a[j].w &amp;&amp; a[i].s &gt; a[j].s &amp;&amp; dp[i] &lt; dp[j] + <span class="number">1</span>) &#123;</span><br><span class="line">				dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">				pre[i] = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (dp[i] &gt; dp[pos]) pos = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[pos]);</span><br><span class="line">	<span class="keyword">while</span> (pos) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[pos].id);</span><br><span class="line">		pos = pre[pos];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>HDU</tag>
+        <tag>动态规划</tag>
+        <tag>最长上升子序列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>免费馅饼 HDU - 1176</title>
+    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201176/</url>
+    <content><![CDATA[<h2 id="免费馅饼-HDU-1176"><a href="#免费馅饼-HDU-1176" class="headerlink" title="免费馅饼 HDU - 1176"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1176" target="_blank" rel="noopener">免费馅饼 HDU - 1176</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有一条坐标轴，范围为$[0, 10]$，有$n$个馅饼分别会在$t_{i}$秒落在$x_{i}$的位置，你的初始位置为5，每秒能向左或向右移动一格，问你你能拾取的最大数量的馅饼个数是多少</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于你每次只能向左或向右移动一格，那么在$t$秒你有三种可选择的状态：</p>
+<ol>
+<li>保持不动</li>
+<li>向左移动一格</li>
+<li>向右移动一格</li>
+</ol>
+<p>所以我们可以定义$dp[i][j]$为第$i$秒在$j$位置处所拾取的最大馅饼数目，那么转移方程即为：</p>
+<script type="math/tex; mode=display">dp[i][j]=dp[i][j]+max(max(dp[i+1][j-1],dp[i+1][j+1]),dp[i+1][j])</script><p>初始条件为$dp[i][j]=\sum_{k=1}^{n}(t_{k} == i\  \&amp;\&amp; \ x_{k} == j)$</p>
+<p>还需注意的是我们枚举时间需要从后往前枚举，因为如果从$t=0$开始枚举的话最终的状态是不确定的，就是说你的位置是不确定的，而由于初始状态为$x=5$，所以从后往前枚举是可行的</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][<span class="number">15</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!n) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">int</span> Time = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="keyword">int</span> x, t;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; x &gt;&gt; t;</span><br><span class="line">			++dp[t][x];</span><br><span class="line">			Time = max(Time, t);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = Time - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">10</span>; ++j) &#123;</span><br><span class="line">				dp[i][j] += max(max(dp[i + <span class="number">1</span>][j - <span class="number">1</span>], dp[i + <span class="number">1</span>][j + <span class="number">1</span>]), dp[i + <span class="number">1</span>][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; dp[<span class="number">0</span>][<span class="number">5</span>] &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>HDU</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Phalanx HDU - 2859</title>
+    <url>/ZLY201.github.io/2020/07/12/HDU%20-%202859/</url>
+    <content><![CDATA[<h2 id="Phalanx-HDU-2859"><a href="#Phalanx-HDU-2859" class="headerlink" title="Phalanx HDU - 2859"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2859" target="_blank" rel="noopener">Phalanx HDU - 2859</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个$n \times n$的字符矩阵，问你其最大的对称子矩阵的大小</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑现在已经有了一个以$(i, j)$为左下角，$m \times m$大小的子矩阵，我们要想将其扩大，那么必须以$(i + 1, j - 1)$为左下角并且$\forall k \leq m+1,\ s[i+1-k]=s[j-1+k]$</p>
+<p>那么我们定义$dp[i][j]$表示以$(i, j)$为左下角的对称矩阵的大小，如果$\forall k \leq dp[i-1][j+1]+1，s[i+1-k]=s[j-1+k]$，那么$dp[i][j]=dp[i-1][j+1]+1$，否则$dp[i][j]=max(k), \forall l \leq k,\ s[i+1-l]=s[j-1+l]$</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="built_in">string</span> s[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!n) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; s[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">int</span> Max = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">				dp[i][j] = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">int</span> x = i, y = j;</span><br><span class="line">				<span class="keyword">while</span> (x &gt;= <span class="number">1</span> &amp;&amp; y &lt; n &amp;&amp; s[i][y] == s[x][j]) &#123;</span><br><span class="line">					--x, ++y;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">int</span> tmp = i - x;</span><br><span class="line">				<span class="keyword">if</span> (tmp &gt; dp[i - <span class="number">1</span>][j + <span class="number">1</span>]) dp[i][j] = dp[i - <span class="number">1</span>][j + <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span> dp[i][j] = tmp;</span><br><span class="line">				Max = max(Max, dp[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; Max &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div></div>
 ]]></content>
       <categories>
@@ -159,6 +154,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Tickets HDU - 1260</title>
+    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201260/</url>
+    <content><![CDATA[<h2 id="Tickets-HDU-1260"><a href="#Tickets-HDU-1260" class="headerlink" title="Tickets HDU - 1260"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1260" target="_blank" rel="noopener">Tickets HDU - 1260</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有$k$个人去电影院买票，第$i$个人的买票时间为$a[i]$，第$i$和第$i+1$个人一起买票的时间为$b[i]$，问你最少花多长时间可以把票卖完</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑第i个人的状态有：</p>
+<ol>
+<li>单独卖票</li>
+<li>和前一个人一起卖票</li>
+</ol>
+<p>那么我用$dp[i]$表示前i个人卖票所花的最短时间，其状态转移方程为:</p>
+<script type="math/tex; mode=display">dp[i]=min(dp[i-1]+a[i],dp[i-2]+b[i-1])</script><p>初始条件为$dp[1]=a[1]$</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2010</span>], b[<span class="number">2010</span>];</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">2010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; ++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; ++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;b[i]);</span><br><span class="line">		dp[<span class="number">1</span>] = a[<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">			dp[i] = min(dp[i - <span class="number">1</span>] + a[i], dp[i - <span class="number">2</span>] + b[i - <span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ss = dp[k] % <span class="number">60</span>;</span><br><span class="line">		<span class="keyword">int</span> mm = dp[k] / <span class="number">60</span> % <span class="number">60</span>;</span><br><span class="line">		<span class="keyword">int</span> hh = <span class="number">8</span> + dp[k] / <span class="number">60</span> / <span class="number">60</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%02d:%02d:%02d %s\n"</span>, hh, mm, ss, (hh &gt; <span class="number">12</span> ? <span class="string">"pm"</span> : <span class="string">"am"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>HDU</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>How Many Points? LightOJ - 1077</title>
     <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201077/</url>
     <content><![CDATA[<h2 id="How-Many-Points-LightOJ-1077"><a href="#How-Many-Points-LightOJ-1077" class="headerlink" title="How Many Points? LightOJ - 1077"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1077" target="_blank" rel="noopener">How Many Points? LightOJ - 1077</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你两个坐标，问你这两点连成的线段上坐标均为整数的个数是多少</p>
@@ -182,24 +200,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Phalanx HDU - 2859</title>
-    <url>/ZLY201.github.io/2020/07/12/HDU%20-%202859/</url>
-    <content><![CDATA[<h2 id="Phalanx-HDU-2859"><a href="#Phalanx-HDU-2859" class="headerlink" title="Phalanx HDU - 2859"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2859" target="_blank" rel="noopener">Phalanx HDU - 2859</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个$n \times n$的字符矩阵，问你其最大的对称子矩阵的大小</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑现在已经有了一个以$(i, j)$为左下角，$m \times m$大小的子矩阵，我们要想将其扩大，那么必须以$(i + 1, j - 1)$为左下角并且$\forall k \leq m+1,\ s[i+1-k]=s[j-1+k]$</p>
-<p>那么我们定义$dp[i][j]$表示以$(i, j)$为左下角的对称矩阵的大小，如果$\forall k \leq dp[i-1][j+1]+1，s[i+1-k]=s[j-1+k]$，那么$dp[i][j]=dp[i-1][j+1]+1$，否则$dp[i][j]=max(k), \forall l \leq k,\ s[i+1-l]=s[j-1+l]$</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="built_in">string</span> s[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!n) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; s[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="keyword">int</span> Max = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">				dp[i][j] = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">int</span> x = i, y = j;</span><br><span class="line">				<span class="keyword">while</span> (x &gt;= <span class="number">1</span> &amp;&amp; y &lt; n &amp;&amp; s[i][y] == s[x][j]) &#123;</span><br><span class="line">					--x, ++y;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">int</span> tmp = i - x;</span><br><span class="line">				<span class="keyword">if</span> (tmp &gt; dp[i - <span class="number">1</span>][j + <span class="number">1</span>]) dp[i][j] = dp[i - <span class="number">1</span>][j + <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span> dp[i][j] = tmp;</span><br><span class="line">				Max = max(Max, dp[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; Max &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>
-]]></content>
-      <categories>
-        <category>HDU</category>
-      </categories>
-      <tags>
-        <tag>HDU</tag>
-        <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>A New Function LightOJ - 1098</title>
     <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201098/</url>
     <content><![CDATA[<h2 id="A-New-Function-LightOJ-1098"><a href="#A-New-Function-LightOJ-1098" class="headerlink" title="A New Function LightOJ - 1098"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1098" target="_blank" rel="noopener">A New Function LightOJ - 1098</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>定义$SOD(n)$为$n$除$1$和$n$外的所有正因子之和，例如：<br>$SOD(24)=2+3+4+6+8+12=35$<br>定义$CSOD(n)=\sum_{i=1}^{n}SOD(i)$<br>让你求$2e9$内任意n的$CSOD(n)$</p>
@@ -217,24 +217,6 @@
       <tags>
         <tag>LightOJ</tag>
         <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bank Robbery LightOJ - 1163</title>
-    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201163/</url>
-    <content><![CDATA[<h2 id="Bank-Robbery-LightOJ-1163"><a href="#Bank-Robbery-LightOJ-1163" class="headerlink" title="Bank Robbery LightOJ - 1163"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1163" target="_blank" rel="noopener">Bank Robbery LightOJ - 1163</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你k，输出所有使得$A - [\frac{A}{10}] = K$成立的A</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>$A - [\frac{A}{10}] = K$<br>$A - \frac{A - A % 10}{10} = k$<br>$9A = 10k - A % 10$<br>$9A = 10k - m$</p>
-<p>由于$0\leq m \leq 9$，直接枚举即可</p>
-<p>要注意这题longlong会溢出</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		ll n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;n);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:"</span>, ++cas);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">9</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">			<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> tmp = <span class="number">10</span> * n - i;</span><br><span class="line">			<span class="keyword">if</span> (tmp % <span class="number">9</span> == <span class="number">0</span> &amp;&amp; tmp / <span class="number">9</span> % <span class="number">10</span> == i) <span class="built_in">printf</span>(<span class="string">" %lld"</span>, tmp / <span class="number">9</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>]]></content>
-      <categories>
-        <category>LightOJ</category>
-      </categories>
-      <tags>
-        <tag>LightOJ</tag>
-        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -261,6 +243,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Bank Robbery LightOJ - 1163</title>
+    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201163/</url>
+    <content><![CDATA[<h2 id="Bank-Robbery-LightOJ-1163"><a href="#Bank-Robbery-LightOJ-1163" class="headerlink" title="Bank Robbery LightOJ - 1163"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1163" target="_blank" rel="noopener">Bank Robbery LightOJ - 1163</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你k，输出所有使得$A - [\frac{A}{10}] = K$成立的A</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>$A - [\frac{A}{10}] = K$<br>$A - \frac{A - A % 10}{10} = k$<br>$9A = 10k - A % 10$<br>$9A = 10k - m$</p>
+<p>由于$0\leq m \leq 9$，直接枚举即可</p>
+<p>要注意这题longlong会溢出</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		ll n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;n);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:"</span>, ++cas);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">9</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">			<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> tmp = <span class="number">10</span> * n - i;</span><br><span class="line">			<span class="keyword">if</span> (tmp % <span class="number">9</span> == <span class="number">0</span> &amp;&amp; tmp / <span class="number">9</span> % <span class="number">10</span> == i) <span class="built_in">printf</span>(<span class="string">" %lld"</span>, tmp / <span class="number">9</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>]]></content>
+      <categories>
+        <category>LightOJ</category>
+      </categories>
+      <tags>
+        <tag>LightOJ</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LCM Extreme LightOJ - 1375</title>
     <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201375/</url>
     <content><![CDATA[<h2 id="LCM-Extreme-LightOJ-1375"><a href="#LCM-Extreme-LightOJ-1375" class="headerlink" title="LCM Extreme LightOJ - 1375"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1375" target="_blank" rel="noopener">LCM Extreme LightOJ - 1375</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">allPairLcm</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">            res += lcm(i, j); <span class="comment">// lcm means least common multiple</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -282,28 +282,6 @@
         <tag>LightOJ</tag>
         <tag>数论</tag>
         <tag>欧拉函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NewCoder - Easy Integration</title>
-    <url>/ZLY201.github.io/2020/07/14/NewCoder%20-%20Easy%20Integration/</url>
-    <content><![CDATA[<h2 id="NewCoder-Easy-Integration"><a href="#NewCoder-Easy-Integration" class="headerlink" title="NewCoder - Easy Integration"></a><a href="https://ac.nowcoder.com/acm/contest/5666/J" target="_blank" rel="noopener">NewCoder - Easy Integration</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给出$n$，让你输出$\int_{0}^{1}(x-x^{2})^{n}$的值</p>
-<p>注：这个值可以被表示成$\frac{p}{q}$的形式，请使用$(p \cdot q^{-1}) \bmod {998244353}$的形式</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>根据分布积分法求出$int_{0}^{1}(x-x^{2})^{n}$的通项公式为：</p>
-<script type="math/tex; mode=display">\frac{n!}{\prod_{i=n+1}^{2n + 1}i}</script><p>为了方便预处理，我们可以将其变一下形：</p>
-<script type="math/tex; mode=display">\frac{n! \cdot n!}{(2n + 1)!}</script><p>那么将其写成逆元的形式就是$(n!)^{2} \cdot inv((2n + 1)!)$<br>$O(n)$将阶乘和阶乘逆元递推出来，然后O(1)输出结果就可以了</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e6</span> + <span class="number">5</span>;</span><br><span class="line">ll a[N];</span><br><span class="line">ll inv[N];</span><br><span class="line"><span class="function">ll <span class="title">qpow</span><span class="params">(ll x, ll y, ll m)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (y) &#123;</span><br><span class="line">        <span class="keyword">if</span> (y &amp; <span class="number">1</span>) ans = ans * x % m;</span><br><span class="line">        x = x * x % m;</span><br><span class="line">        y &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    a[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; N; ++i)  &#123;</span><br><span class="line">        a[i] = a[i - <span class="number">1</span>] * i % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    inv[N - <span class="number">1</span>] = qpow(a[N - <span class="number">1</span>], mod - <span class="number">2</span>, mod);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = N - <span class="number">2</span>; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        inv[i] = inv[i + <span class="number">1</span>] * (i * <span class="number">1l</span>l + <span class="number">1</span>) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    ll n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">        ll ans = a[n] * a[n] % mod * inv[<span class="number">2</span> * n + <span class="number">1</span>] % mod;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>
-]]></content>
-      <categories>
-        <category>NewCoder</category>
-      </categories>
-      <tags>
-        <tag>NewCoder</tag>
-        <tag>数学</tag>
-        <tag>数论</tag>
-        <tag>乘法逆元</tag>
       </tags>
   </entry>
   <entry>
@@ -350,13 +328,15 @@
       </tags>
   </entry>
   <entry>
-    <title>NewCoder - Infinite String Comparision</title>
-    <url>/ZLY201.github.io/2020/07/13/NewCoder%20-%20Infinite%20String%20Comparision/</url>
-    <content><![CDATA[<h2 id="NewCoder-Infinite-String-Comparision"><a href="#NewCoder-Infinite-String-Comparision" class="headerlink" title="NewCoder - Infinite String Comparision"></a><a href="https://ac.nowcoder.com/acm/contest/5666/F" target="_blank" rel="noopener">NewCoder - Infinite String Comparision</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将两个字符串$s$和$p$无限延长，问你这两个字符串的大小关系</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将两个字符串分别延长两倍后进行比较即可<br>证明：<br>如果在$min(len(s), len(p))$之内有不同的字符串，那么结果显然<br>否则假设$len(s) &gt; len(p)$<br>令$s = s + s，p = p + p$，由于在$len(p)$之内$s$和$p$相同，那么<br>$s = p + s’ + p + s’$<br>$p = p + p$<br>由于$(s’ + p)$的长度显然大于$p$的长度，那么我们必定可以比较出$s$与$p$的关系</p>
-<p>$len(s) &lt; len(p)$同理</p>
+    <title>NewCoder - Easy Integration</title>
+    <url>/ZLY201.github.io/2020/07/14/NewCoder%20-%20Easy%20Integration/</url>
+    <content><![CDATA[<h2 id="NewCoder-Easy-Integration"><a href="#NewCoder-Easy-Integration" class="headerlink" title="NewCoder - Easy Integration"></a><a href="https://ac.nowcoder.com/acm/contest/5666/J" target="_blank" rel="noopener">NewCoder - Easy Integration</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给出$n$，让你输出$\int_{0}^{1}(x-x^{2})^{n}$的值</p>
+<p>注：这个值可以被表示成$\frac{p}{q}$的形式，请使用$(p \cdot q^{-1}) \bmod {998244353}$的形式</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>根据分布积分法求出$int_{0}^{1}(x-x^{2})^{n}$的通项公式为：</p>
+<script type="math/tex; mode=display">\frac{n!}{\prod_{i=n+1}^{2n + 1}i}</script><p>为了方便预处理，我们可以将其变一下形：</p>
+<script type="math/tex; mode=display">\frac{n! \cdot n!}{(2n + 1)!}</script><p>那么将其写成逆元的形式就是$(n!)^{2} \cdot inv((2n + 1)!)$<br>$O(n)$将阶乘和阶乘逆元递推出来，然后O(1)输出结果就可以了</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> s, p;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s &gt;&gt; p) &#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        s += s, p += p;</span><br><span class="line">        <span class="keyword">if</span>(s.length() &lt; p.length()) &#123;</span><br><span class="line">            swap(s, p);</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ls = s.length(), lp = p.length();</span><br><span class="line">        <span class="keyword">int</span> tag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ls; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> index = i % lp;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == p[i % lp]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i] &lt; p[i % lp]) tag = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> tag = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (tag == <span class="number">0</span>) <span class="built_in">cout</span> &lt;&lt; <span class="string">"=\n"</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (tag == <span class="number">1</span>) <span class="built_in">cout</span> &lt;&lt; (flag ? <span class="string">"&gt;\n"</span> : <span class="string">"&lt;\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; (flag ? <span class="string">"&lt;\n"</span> : <span class="string">"&gt;\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e6</span> + <span class="number">5</span>;</span><br><span class="line">ll a[N];</span><br><span class="line">ll inv[N];</span><br><span class="line"><span class="function">ll <span class="title">qpow</span><span class="params">(ll x, ll y, ll m)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (y) &#123;</span><br><span class="line">        <span class="keyword">if</span> (y &amp; <span class="number">1</span>) ans = ans * x % m;</span><br><span class="line">        x = x * x % m;</span><br><span class="line">        y &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    a[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; N; ++i)  &#123;</span><br><span class="line">        a[i] = a[i - <span class="number">1</span>] * i % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    inv[N - <span class="number">1</span>] = qpow(a[N - <span class="number">1</span>], mod - <span class="number">2</span>, mod);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = N - <span class="number">2</span>; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        inv[i] = inv[i + <span class="number">1</span>] * (i * <span class="number">1l</span>l + <span class="number">1</span>) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    ll n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">        ll ans = a[n] * a[n] % mod * inv[<span class="number">2</span> * n + <span class="number">1</span>] % mod;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div></div>
 ]]></content>
       <categories>
@@ -364,7 +344,9 @@
       </categories>
       <tags>
         <tag>NewCoder</tag>
-        <tag>字符串</tag>
+        <tag>数学</tag>
+        <tag>数论</tag>
+        <tag>乘法逆元</tag>
       </tags>
   </entry>
   <entry>
@@ -382,9 +364,27 @@
         <category>NewCoder</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>NewCoder</tag>
+        <tag>动态规划</tag>
         <tag>单调队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NewCoder - Infinite String Comparision</title>
+    <url>/ZLY201.github.io/2020/07/13/NewCoder%20-%20Infinite%20String%20Comparision/</url>
+    <content><![CDATA[<h2 id="NewCoder-Infinite-String-Comparision"><a href="#NewCoder-Infinite-String-Comparision" class="headerlink" title="NewCoder - Infinite String Comparision"></a><a href="https://ac.nowcoder.com/acm/contest/5666/F" target="_blank" rel="noopener">NewCoder - Infinite String Comparision</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将两个字符串$s$和$p$无限延长，问你这两个字符串的大小关系</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将两个字符串分别延长两倍后进行比较即可<br>证明：<br>如果在$min(len(s), len(p))$之内有不同的字符串，那么结果显然<br>否则假设$len(s) &gt; len(p)$<br>令$s = s + s，p = p + p$，由于在$len(p)$之内$s$和$p$相同，那么<br>$s = p + s’ + p + s’$<br>$p = p + p$<br>由于$(s’ + p)$的长度显然大于$p$的长度，那么我们必定可以比较出$s$与$p$的关系</p>
+<p>$len(s) &lt; len(p)$同理</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> s, p;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s &gt;&gt; p) &#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        s += s, p += p;</span><br><span class="line">        <span class="keyword">if</span>(s.length() &lt; p.length()) &#123;</span><br><span class="line">            swap(s, p);</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ls = s.length(), lp = p.length();</span><br><span class="line">        <span class="keyword">int</span> tag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ls; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> index = i % lp;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == p[i % lp]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i] &lt; p[i % lp]) tag = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> tag = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (tag == <span class="number">0</span>) <span class="built_in">cout</span> &lt;&lt; <span class="string">"=\n"</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (tag == <span class="number">1</span>) <span class="built_in">cout</span> &lt;&lt; (flag ? <span class="string">"&gt;\n"</span> : <span class="string">"&lt;\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; (flag ? <span class="string">"&lt;\n"</span> : <span class="string">"&gt;\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>NewCoder</category>
+      </categories>
+      <tags>
+        <tag>NewCoder</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -429,23 +429,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Interesting Yang Hui Triangle POJ - 3146</title>
-    <url>/ZLY201.github.io/2020/07/09/POJ%20-%203146/</url>
-    <content><![CDATA[<h2 id="Interesting-Yang-Hui-Triangle-POJ-3146"><a href="#Interesting-Yang-Hui-Triangle-POJ-3146" class="headerlink" title="Interesting Yang Hui Triangle POJ - 3146"></a><a href="http://poj.org/problem?id=3146" target="_blank" rel="noopener">Interesting Yang Hui Triangle POJ - 3146</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>问你杨辉三角第n行有多少个数不能被p整除</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>杨辉三角第n行第i个数为$C_{n}^{i-1}$<br>根据卢卡斯定理我们可知，假设$a$和$b$在$p$进制下分别表示为$a_{k}a_{k-1}…a_{0}$和$b_{k}b_{k-1}…b_{0}$，那么<br>$C_{a}^{b} \equiv {C_{a_{k}}^{b_{k}}C_{a_{k-1}}^{b_{k-1}}…C_{a_{0}}^{b_{0}}} \pmod {p}$<br>要使得$C_{a}^{b}$不能被p整除，那么$\forall {i} \in [0, k]$，$a_{i} \geq b_{i}$<br>根据计数原理，我们求出p进制下的$n=n_{k}n_{k-1}…n_{0}$，那么答案即为$(n_{0} + 1)(n_{1} + 1)…(n_{k} + 1)$</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ll p, n;</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; p &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!p &amp;&amp; !n) <span class="keyword">break</span>;</span><br><span class="line">		ll ans = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (n) &#123;</span><br><span class="line">			ans = ans * (n % p + <span class="number">1</span>) % <span class="number">10000</span>;</span><br><span class="line">			n /= p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %04lld\n"</span>, ++cas, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>]]></content>
-      <categories>
-        <category>POJ</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>POJ</tag>
-        <tag>卢卡斯定理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C Looooops POJ - 2115</title>
     <url>/ZLY201.github.io/2020/07/08/POJ%20-%202115/</url>
     <content><![CDATA[<h2 id="C-Looooops-POJ-2115"><a href="#C-Looooops-POJ-2115" class="headerlink" title="C Looooops POJ - 2115"></a><a href="http://poj.org/problem?id=2115" target="_blank" rel="noopener">C Looooops POJ - 2115</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (variable = A; variable != B; variable += C) &#123;</span><br><span class="line">	i = (i % (<span class="number">1</span> &lt;&lt; k));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -461,6 +444,23 @@
         <tag>数论</tag>
         <tag>POJ</tag>
         <tag>拓展欧几里得定理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Interesting Yang Hui Triangle POJ - 3146</title>
+    <url>/ZLY201.github.io/2020/07/09/POJ%20-%203146/</url>
+    <content><![CDATA[<h2 id="Interesting-Yang-Hui-Triangle-POJ-3146"><a href="#Interesting-Yang-Hui-Triangle-POJ-3146" class="headerlink" title="Interesting Yang Hui Triangle POJ - 3146"></a><a href="http://poj.org/problem?id=3146" target="_blank" rel="noopener">Interesting Yang Hui Triangle POJ - 3146</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>问你杨辉三角第n行有多少个数不能被p整除</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>杨辉三角第n行第i个数为$C_{n}^{i-1}$<br>根据卢卡斯定理我们可知，假设$a$和$b$在$p$进制下分别表示为$a_{k}a_{k-1}…a_{0}$和$b_{k}b_{k-1}…b_{0}$，那么<br>$C_{a}^{b} \equiv {C_{a_{k}}^{b_{k}}C_{a_{k-1}}^{b_{k-1}}…C_{a_{0}}^{b_{0}}} \pmod {p}$<br>要使得$C_{a}^{b}$不能被p整除，那么$\forall {i} \in [0, k]$，$a_{i} \geq b_{i}$<br>根据计数原理，我们求出p进制下的$n=n_{k}n_{k-1}…n_{0}$，那么答案即为$(n_{0} + 1)(n_{1} + 1)…(n_{k} + 1)$</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ll p, n;</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; p &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!p &amp;&amp; !n) <span class="keyword">break</span>;</span><br><span class="line">		ll ans = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (n) &#123;</span><br><span class="line">			ans = ans * (n % p + <span class="number">1</span>) % <span class="number">10000</span>;</span><br><span class="line">			n /= p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %04lld\n"</span>, ++cas, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>POJ</tag>
+        <tag>卢卡斯定理</tag>
       </tags>
   </entry>
   <entry>
@@ -485,6 +485,83 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
         <tag>动态规划</tag>
         <tag>POJ</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Making the Grade POJ - 3666</title>
+    <url>/ZLY201.github.io/2020/07/13/POJ%20-%203666/</url>
+    <content><![CDATA[<h2 id="Making-the-Grade-POJ-3666"><a href="#Making-the-Grade-POJ-3666" class="headerlink" title="Making the Grade POJ - 3666"></a><a href="http://poj.org/problem?id=3666" target="_blank" rel="noopener">Making the Grade POJ - 3666</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将序列修改成单调不减的序列的最小成本是多少，假设修改前数组为$a$，修改后数组为$b$，成本定义为$\sum_{i=1}^{n}\lvert a_{i}-b_{i}\rvert$</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>模拟过后发现无论怎么改，对于最优解，修改后的数组中任意一个数在原数组中均能找到，我们定义$dp[i][j]$为前$i$序列中的最大值修改成$j$的情况，将$a$数组离散化到$[1, n]$区间之内，其状态转移方程为：</p>
+<script type="math/tex; mode=display">dp[i][j] = abs(a[i] - b[j]) + min(dp[i - 1][k]) \qquad k \leq j</script><p>具体可以参考下面几篇博客：<br><a href="https://www.cnblogs.com/vb4896/p/5877962.html" target="_blank" rel="noopener">https://www.cnblogs.com/vb4896/p/5877962.html</a><br><a href="https://blog.csdn.net/u011815404/article/details/88552887" target="_blank" rel="noopener">https://blog.csdn.net/u011815404/article/details/88552887</a></p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn], b[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">		b[i] = a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	sort(b + <span class="number">1</span>, b + n + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="keyword">int</span> Min = INT_MAX;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">			Min = min(dp[i - <span class="number">1</span>][j], Min);</span><br><span class="line">			dp[i][j] = <span class="built_in">abs</span>(a[i] - b[j]) + Min;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> res = INT_MAX;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) res = min(res, dp[n][i]);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>POJ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Milking Time POJ - 3616</title>
+    <url>/ZLY201.github.io/2020/07/13/POJ%20-%203616/</url>
+    <content><![CDATA[<h2 id="Milking-Time-POJ-3616"><a href="#Milking-Time-POJ-3616" class="headerlink" title="Milking Time POJ - 3616"></a><a href="http://poj.org/problem?id=3616" target="_blank" rel="noopener">Milking Time POJ - 3616</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>在$N$时间之内有$M$次挤奶的机会，每次的开始时间为$start_{i}$，结束时间为$end_{i}$，每次挤奶的效率为$efficiency_{i}$，每次挤奶之后需要休息$R$小时，问你最大的效率和是多少</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先根据贪心策略，我们肯定优先选择结束时间早的时间段，所以我们先按照结束时间对时间段进行排序，现在假设我已经得到了$i$段之前的最大效率和，那么对于第$i + 1$个时间段，我可以将其添加到任意以$j$结尾，并且$start_{i} \geq end_{j} + R$的末尾，形成一个新的序列</p>
+<p>那么定义$dp[i]$为以第$i$段结尾的最大效率和，其状态转移方程为：</p>
+<script type="math/tex; mode=display">dp[i] = max(dp[i], dp[j] + efficiency_{i}) \qquad j < i \ \&\& \ start_{i} \geq end_{j} + R</script><h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> x, y, z;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Node&amp; b)<span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (y != b.y) <span class="keyword">return</span> y &lt; b.y;</span><br><span class="line">		<span class="keyword">if</span> (x != b.x) <span class="keyword">return</span> x &lt; b.x;</span><br><span class="line">		<span class="keyword">return</span> z &gt; b.z;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n, m, r;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; r;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; a[i].x &gt;&gt; a[i].y &gt;&gt; a[i].z;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a + <span class="number">1</span>, a + m + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">		dp[i] = a[i].z;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (a[i].x &gt;= a[j].y + r) &#123;</span><br><span class="line">				dp[i] = max(dp[i], dp[j] + a[i].z);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		res = max(res, dp[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>POJ</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Welcome To My Own Blog</title>
+    <url>/ZLY201.github.io/2020/07/03/hellow/</url>
+    <content><![CDATA[<div style="text-align: center">
+    <table>
+        <tr><td colspan="2" style="text-align: center"><font size="4">博主个人信息</font></td></tr>
+        <tr>
+            <td style="text-align: center">姓名</td>
+            <td style="text-align: center">保密</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">性别</td>
+            <td style="text-align: center">反正不是女的</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">年龄</td>
+            <td style="text-align: center">别问，问就是18（orz）</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">学校</td>
+            <td style="text-align: center">中国地质大学（武汉）</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">专业</td>
+            <td style="text-align: center">计算机科学与技术</td>
+        </tr>
+        <tr><td rowspan="4" style="text-align: center">获奖情况</td></tr>
+        <tr><td style="text-align: center">1. 信工学院编程大赛一等奖</td></tr>
+        <tr><td style="text-align: center">2. 中国地质大学（武汉）暨华中地区ICPC邀请赛三等奖</td></tr>
+        <tr><td style="text-align: center">3. 中国地质大学（武汉）数学建模校内选拔赛一等奖</td></tr>
+    </table>
+</div>
+
+<p>欢迎访问我的其他博客主页（可能有惊喜哦）<br><a href="https://blog.csdn.net/weixin_44211980" target="_blank" rel="noopener">csdn博客主页</a><br><a href="https://www.luogu.com.cn/blog/226316/" target="_blank" rel="noopener">luogu博客主页</a></p>
+<p>祝您玩的开心（0^_^0）！</p>
+]]></content>
+      <categories>
+        <category>Hellow</category>
+      </categories>
   </entry>
   <entry>
     <title>ACM博弈论基础</title>
@@ -579,65 +656,6 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
       </tags>
   </entry>
   <entry>
-    <title>Milking Time POJ - 3616</title>
-    <url>/ZLY201.github.io/2020/07/13/POJ%20-%203616/</url>
-    <content><![CDATA[<h2 id="Milking-Time-POJ-3616"><a href="#Milking-Time-POJ-3616" class="headerlink" title="Milking Time POJ - 3616"></a><a href="http://poj.org/problem?id=3616" target="_blank" rel="noopener">Milking Time POJ - 3616</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>在$N$时间之内有$M$次挤奶的机会，每次的开始时间为$start_{i}$，结束时间为$end_{i}$，每次挤奶的效率为$efficiency_{i}$，每次挤奶之后需要休息$R$小时，问你最大的效率和是多少</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先根据贪心策略，我们肯定优先选择结束时间早的时间段，所以我们先按照结束时间对时间段进行排序，现在假设我已经得到了$i$段之前的最大效率和，那么对于第$i + 1$个时间段，我可以将其添加到任意以$j$结尾，并且$start_{i} \geq end_{j} + R$的末尾，形成一个新的序列</p>
-<p>那么定义$dp[i]$为以第$i$段结尾的最大效率和，其状态转移方程为：</p>
-<script type="math/tex; mode=display">dp[i] = max(dp[i], dp[j] + efficiency_{i}) \qquad j < i \ \&\& \ start_{i} \geq end_{j} + R</script><h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> x, y, z;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Node&amp; b)<span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (y != b.y) <span class="keyword">return</span> y &lt; b.y;</span><br><span class="line">		<span class="keyword">if</span> (x != b.x) <span class="keyword">return</span> x &lt; b.x;</span><br><span class="line">		<span class="keyword">return</span> z &gt; b.z;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n, m, r;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; r;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; a[i].x &gt;&gt; a[i].y &gt;&gt; a[i].z;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a + <span class="number">1</span>, a + m + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">		dp[i] = a[i].z;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (a[i].x &gt;= a[j].y + r) &#123;</span><br><span class="line">				dp[i] = max(dp[i], dp[j] + a[i].z);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		res = max(res, dp[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>
-]]></content>
-      <categories>
-        <category>POJ</category>
-      </categories>
-      <tags>
-        <tag>动态规划</tag>
-        <tag>POJ</tag>
-        <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Welcome To My Own Blog</title>
-    <url>/ZLY201.github.io/2020/07/03/hellow/</url>
-    <content><![CDATA[<div style="text-align: center">
-    <table>
-        <tr><td colspan="2" style="text-align: center"><font size="4">博主个人信息</font></td></tr>
-        <tr>
-            <td style="text-align: center">姓名</td>
-            <td style="text-align: center">保密</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">性别</td>
-            <td style="text-align: center">反正不是女的</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">年龄</td>
-            <td style="text-align: center">别问，问就是18（orz）</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">学校</td>
-            <td style="text-align: center">中国地质大学（武汉）</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">专业</td>
-            <td style="text-align: center">计算机科学与技术</td>
-        </tr>
-        <tr><td rowspan="4" style="text-align: center">获奖情况</td></tr>
-        <tr><td style="text-align: center">1. 信工学院编程大赛一等奖</td></tr>
-        <tr><td style="text-align: center">2. 中国地质大学（武汉）暨华中地区ICPC邀请赛三等奖</td></tr>
-        <tr><td style="text-align: center">3. 中国地质大学（武汉）数学建模校内选拔赛一等奖</td></tr>
-    </table>
-</div>
-
-<p>欢迎访问我的其他博客主页（可能有惊喜哦）<br><a href="https://blog.csdn.net/weixin_44211980" target="_blank" rel="noopener">csdn博客主页</a><br><a href="https://www.luogu.com.cn/blog/226316/" target="_blank" rel="noopener">luogu博客主页</a></p>
-<p>祝您玩的开心（0^_^0）！</p>
-]]></content>
-      <categories>
-        <category>Hellow</category>
-      </categories>
-  </entry>
-  <entry>
     <title>唯一分解定理</title>
     <url>/ZLY201.github.io/2020/07/05/%E5%94%AF%E4%B8%80%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<h2 id="唯一分解定理"><a href="#唯一分解定理" class="headerlink" title="唯一分解定理"></a>唯一分解定理</h2><p>根据欧拉定理，一个数n可以被写成如下格式</p>
@@ -662,21 +680,37 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
       </tags>
   </entry>
   <entry>
-    <title>Making the Grade POJ - 3666</title>
-    <url>/ZLY201.github.io/2020/07/13/POJ%20-%203666/</url>
-    <content><![CDATA[<h2 id="Making-the-Grade-POJ-3666"><a href="#Making-the-Grade-POJ-3666" class="headerlink" title="Making the Grade POJ - 3666"></a><a href="http://poj.org/problem?id=3666" target="_blank" rel="noopener">Making the Grade POJ - 3666</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将序列修改成单调不减的序列的最小成本是多少，假设修改前数组为$a$，修改后数组为$b$，成本定义为$\sum_{i=1}^{n}\lvert a_{i}-b_{i}\rvert$</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>模拟过后发现无论怎么改，对于最优解，修改后的数组中任意一个数在原数组中均能找到，我们定义$dp[i][j]$为前$i$序列中的最大值修改成$j$的情况，将$a$数组离散化到$[1, n]$区间之内，其状态转移方程为：</p>
-<script type="math/tex; mode=display">dp[i][j] = abs(a[i] - b[j]) + min(dp[i - 1][k]) \qquad k \leq j</script><p>具体可以参考下面几篇博客：<br><a href="https://www.cnblogs.com/vb4896/p/5877962.html" target="_blank" rel="noopener">https://www.cnblogs.com/vb4896/p/5877962.html</a><br><a href="https://blog.csdn.net/u011815404/article/details/88552887" target="_blank" rel="noopener">https://blog.csdn.net/u011815404/article/details/88552887</a></p>
+    <title>欧拉函数</title>
+    <url>/ZLY201.github.io/2020/07/05/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>对于一个正整数x，小于且和x互质的正整数（包括1）的个数，计做$\phi(x)$</p>
+<p>其通项公式为$\phi(x)=x\prod_{i=1}^{n}(1-\frac{1}{p_{i}})$</p>
+<p>其中$p_{i}$代表x的某一个质因数，n为质因数个数</p>
+<p>特别的，我们规定$\phi(1)=1$</p>
+<p>那么我们根据公式可以求出任意正整数x的$\phi(x)$值，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">ll <span class="title">eular</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">    ll res = n;</span><br><span class="line">    ll k = <span class="built_in">sqrt</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>) &#123;</span><br><span class="line">            res = res / i * (i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span>(n % i == <span class="number">0</span>) n /= i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n &gt; <span class="number">1</span>) res = res / n * (n - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是如果实时让你输出任意指定范围内x的$\phi(x)$值，上述代码的时间复杂度显然不满足要求，于是我们采取打表的方法求出1-n中所有数的$\phi(x)$值，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!phi[i]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= n; j += i) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!phi[j]) phi[j] = j;</span><br><span class="line">				phi[j] = phi[j] / i * (i - <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="欧拉函数的性质"><a href="#欧拉函数的性质" class="headerlink" title="欧拉函数的性质"></a>欧拉函数的性质</h2><ol>
+<li><p>若n是质数p的k次幂，即$n=p^{k}$，那么有$\phi(n)=(p-1)p^{k-1}$</p>
+</li>
+<li><p>若n与m互质，那么$\phi(nm)=(n-1)(m-1)=\phi(n)\phi(m)$</p>
+</li>
+<li><p>若n为奇数，则$\phi(n)=\phi(2n)$</p>
+</li>
+<li><p>小于n，且与n互质的数之和为$\frac{n \times \phi(n)}{2}$</p>
+</li>
+</ol>
+<h2 id="例题：Mathematically-Hard-LightOJ-1007"><a href="#例题：Mathematically-Hard-LightOJ-1007" class="headerlink" title="例题：Mathematically Hard LightOJ - 1007"></a>例题：<a href="http://lightoj.com/volume_showproblem.php?problem=1007" target="_blank" rel="noopener">Mathematically Hard LightOJ - 1007</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你正整数a和b，定义$score(x) = n^{2}$，其中n为小于x的质因子的个数，问你区间[a, b]内score(i)的和是多少</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>根据定义可知$n = \phi(x)$，那么我们使用打表法线性求出范围内的$\phi(x)$求平方和即可</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn], b[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>), <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">		b[i] = a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	sort(b + <span class="number">1</span>, b + n + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="keyword">int</span> Min = INT_MAX;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">			Min = min(dp[i - <span class="number">1</span>][j], Min);</span><br><span class="line">			dp[i][j] = <span class="built_in">abs</span>(a[i] - b[j]) + Min;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> res = INT_MAX;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) res = min(res, dp[n][i]);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>
-]]></content>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e6</span> + <span class="number">10</span>;</span><br><span class="line">ll phi[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!phi[i]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; maxn; j += i) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!phi[j]) phi[j] = j;</span><br><span class="line">				phi[j] = phi[j] / i * (i - <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		phi[i] = phi[i - <span class="number">1</span>] + phi[i] * phi[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	euler();</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> a, b;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %llu\n"</span>, ++cas, phi[b] - phi[a - <span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>]]></content>
       <categories>
-        <category>POJ</category>
+        <category>数论</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
-        <tag>POJ</tag>
+        <tag>数论</tag>
+        <tag>欧拉函数</tag>
       </tags>
   </entry>
   <entry>
@@ -726,40 +760,6 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
         <tag>拓展欧几里得定理</tag>
         <tag>中国剩余定理</tag>
         <tag>拓展中国剩余定理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欧拉函数</title>
-    <url>/ZLY201.github.io/2020/07/05/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>对于一个正整数x，小于且和x互质的正整数（包括1）的个数，计做$\phi(x)$</p>
-<p>其通项公式为$\phi(x)=x\prod_{i=1}^{n}(1-\frac{1}{p_{i}})$</p>
-<p>其中$p_{i}$代表x的某一个质因数，n为质因数个数</p>
-<p>特别的，我们规定$\phi(1)=1$</p>
-<p>那么我们根据公式可以求出任意正整数x的$\phi(x)$值，代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">ll <span class="title">eular</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">    ll res = n;</span><br><span class="line">    ll k = <span class="built_in">sqrt</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>) &#123;</span><br><span class="line">            res = res / i * (i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span>(n % i == <span class="number">0</span>) n /= i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n &gt; <span class="number">1</span>) res = res / n * (n - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是如果实时让你输出任意指定范围内x的$\phi(x)$值，上述代码的时间复杂度显然不满足要求，于是我们采取打表的方法求出1-n中所有数的$\phi(x)$值，代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!phi[i]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= n; j += i) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!phi[j]) phi[j] = j;</span><br><span class="line">				phi[j] = phi[j] / i * (i - <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="欧拉函数的性质"><a href="#欧拉函数的性质" class="headerlink" title="欧拉函数的性质"></a>欧拉函数的性质</h2><ol>
-<li><p>若n是质数p的k次幂，即$n=p^{k}$，那么有$\phi(n)=(p-1)p^{k-1}$</p>
-</li>
-<li><p>若n与m互质，那么$\phi(nm)=(n-1)(m-1)=\phi(n)\phi(m)$</p>
-</li>
-<li><p>若n为奇数，则$\phi(n)=\phi(2n)$</p>
-</li>
-<li><p>小于n，且与n互质的数之和为$\frac{n \times \phi(n)}{2}$</p>
-</li>
-</ol>
-<h2 id="例题：Mathematically-Hard-LightOJ-1007"><a href="#例题：Mathematically-Hard-LightOJ-1007" class="headerlink" title="例题：Mathematically Hard LightOJ - 1007"></a>例题：<a href="http://lightoj.com/volume_showproblem.php?problem=1007" target="_blank" rel="noopener">Mathematically Hard LightOJ - 1007</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你正整数a和b，定义$score(x) = n^{2}$，其中n为小于x的质因子的个数，问你区间[a, b]内score(i)的和是多少</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>根据定义可知$n = \phi(x)$，那么我们使用打表法线性求出范围内的$\phi(x)$求平方和即可</p>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e6</span> + <span class="number">10</span>;</span><br><span class="line">ll phi[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!phi[i]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; maxn; j += i) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!phi[j]) phi[j] = j;</span><br><span class="line">				phi[j] = phi[j] / i * (i - <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i) &#123;</span><br><span class="line">		phi[i] = phi[i - <span class="number">1</span>] + phi[i] * phi[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">	<span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">	euler();</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> a, b;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d: %llu\n"</span>, ++cas, phi[b] - phi[a - <span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div></div>]]></content>
-      <categories>
-        <category>数论</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>欧拉函数</tag>
       </tags>
   </entry>
 </search>
