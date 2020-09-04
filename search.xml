@@ -41,7 +41,7 @@
       </categories>
   </entry>
   <entry>
-    <title>1</title>
+    <title>树的直径</title>
     <url>/ZLY201.github.io/2020/09/04/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</url>
     <content><![CDATA[<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>&emsp;定义一颗树上最远两个叶子结点的距离为树的直径。</p>
 <h3 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h3><p>&emsp;很容易想到一个$O(n^2)$的暴力算法，即遍历所有的叶子结点，找到距离最远的那两个，距离即为所求，但是复杂度过高，对于$n \geq 1e5$的情况便会显得力不从心。</p>
@@ -1076,8 +1076,8 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
       <tags>
         <tag>LightOJ</tag>
         <tag>概率&amp;期望</tag>
-        <tag>唯一分解定理</tag>
         <tag>概率dp</tag>
+        <tag>唯一分解定理</tag>
       </tags>
   </entry>
   <entry>
@@ -1313,8 +1313,8 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
         <category>NewCoder</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>NewCoder</tag>
+        <tag>动态规划</tag>
         <tag>单调队列</tag>
       </tags>
   </entry>
