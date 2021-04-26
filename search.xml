@@ -1105,8 +1105,8 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
       <tags>
         <tag>LightOJ</tag>
         <tag>概率&amp;期望</tag>
-        <tag>概率dp</tag>
         <tag>唯一分解定理</tag>
+        <tag>概率dp</tag>
       </tags>
   </entry>
   <entry>
