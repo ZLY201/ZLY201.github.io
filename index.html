@@ -1,130 +1,131 @@
-锘�# Hexo Configuration
-## Docs: https://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
+<!DOCTYPE html>
 
-# Site
-title: CUG_YZL's Blog
-subtitle: 瑕佹槸涓嶅姫鍔涳紝浠婂ぉ寰堢墰閫硷紝鏄庡ぉ寰堝偦閫�
-description: ''
-keywords:
-author: CUG_YZL
-language: zh-Hans
-timezone: ''
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+  <head>
+    <!-- hexo-inject:begin -->
+    <!-- hexo-inject:end -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="theme-color" content="#222" />
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link
+      href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"
+      rel="stylesheet"
+    />
+    <meta name="referrer" content="no-referrer"/>
+    <style>
+      .pace .pace-progress {
+        background: #1e92fb; /*进度条颜色*/
+        height: 3px;
+      }
+      .pace .pace-progress-inner {
+        box-shadow: 0 0 10px #1e92fb, 0 0 5px #1e92fb; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #1e92fb; /*上边框颜色*/
+        border-left-color: #1e92fb; /*左边框颜色*/
+      }
+    </style>
 
-# URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://zly201.github.io/
-root: /ZLY201.github.io/
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-# Directory
-source_dir: source
-public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-code_dir: downloads/code
-i18n_dir: :lang
-skip_render:
+    <link
+      href="https://ZLY201.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-# Writing
-new_post_name: :title.md # File name of new posts
-default_layout: post
-titlecase: false # Transform title into titlecase
-external_link:
-  enable: true # Open external links in new tab
-  field: site # Apply to the whole site
-  exclude: ''
-filename_case: 0
-render_drafts: false
-post_asset_folder: true
-relative_link: false
-future: true
-highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace: ''
-  wrap: true
-  hljs: false
+    <link
+      href="https://ZLY201.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-# Home page setting
-# path: Root path for your blogs index page. (default = '')
-# per_page: Posts displayed per page. (0 = disable pagination)
-# order_by: Posts order. (Order by date descending by default)
-index_generator:
-  path: ''
-  per_page: 10
-  order_by: -date
+    <link
+      href="https://ZLY201.github.io/css/main.css?v=5.1.4"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-# Category & Tag
-default_category: uncategorized
-category_map:
-tag_map:
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://ZLY201.github.io/images/apple-touch-icon-next.png?v=5.1.4"
+    />
 
-# Metadata elements
-## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
-meta_generator: true
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://ZLY201.github.io/images/favicon-32x32-next.png?v=5.1.4"
+    />
 
-# Date / Time format
-## Hexo uses Moment.js to parse and display date
-## You can customize the date format as defined in
-## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
-time_format: HH:mm:ss
-## Use post's date for updated date unless set in front-matter
-use_date_for_updated: false
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://ZLY201.github.io/images/favicon-16x16-next.png?v=5.1.4"
+    />
 
-# Pagination
-## Set per_page to 0 to disable pagination
-per_page: 10
-pagination_dir: page
+    <link
+      rel="mask-icon"
+      href="https://ZLY201.github.io/images/logo.svg?v=5.1.4"
+      color="#222"
+    />
 
-# Include / Exclude file(s)
-## include:/exclude: options only apply to the 'source/' folder
-include:
-exclude:
-ignore:
+    <meta name="keywords" content="Hexo, NexT" />
 
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: next
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CUG_YZL&#39;s Blog" />
+    <meta property="og:url" content="http:/https://ZLY201.github.io/index.html" />
+    <meta property="og:site_name" content="CUG_YZL&#39;s Blog" />
+    <meta property="article:author" content="CUG_YZL" />
+    <meta name="twitter:card" content="summary" />
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repository: git@github.com:ZLY201/ZLY201.github.io.git
-  branch: master
-
-live2d:
-  # 锟斤拷enable 为true锟斤拷时锟津，伙拷锟斤拷锟斤拷yaliya锟斤拷锟斤拷锟皆达拷锟斤拷锟斤拷shizuku,锟斤拷头锟斤拷小锟斤拷悖拷锟斤拷也锟斤拷锟斤拷锟斤拷锟斤拷锟轿伙拷茫锟斤拷锟斤拷锟斤拷锟揭拷锟絜nable注锟酵碉拷
-  # enable: true
-  scriptFrom: local
-  pluginRootPath: live2dw/
-  pluginJsPath: lib/
-  pluginModelPath: assets/
-  model:
-    use: live2d-widget-model-z16 # 通锟斤拷锟睫革拷use锟斤拷确锟斤拷使锟斤拷锟斤拷锟斤拷model
-  display:
-    position: left
-    width: 150
-    height: 300
-    # 一锟斤拷锟饺较可帮拷锟斤拷位锟斤拷
-    # hOffset: 200 
-    # vOffset: -100
-    # 锟节讹拷锟斤拷位锟斤拷锟斤拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟轿伙拷煤芫锟斤拷锟�
-    hOffset: 80  # 锟斤拷锟斤拷水平位锟斤拷
-    vOffset: -50  # 锟斤拷锟节达拷直位锟斤拷
-  mobile:
-    show: false
-
-
+    <script type="text/javascript" id="hexo.configurations">
+      var NexT = window.NexT || {};
+      var CONFIG = {
+        root: "https://ZLY201.github.io/",
+        scheme: "Gemini",
+        version: "5.1.4",
+        sidebar: {
+          position: "left",
+          display: "post",
+          offset: 12,
+          b2t: false,
+          scrollpercent: false,
+          onmobile: false,
+        },
+        fancybox: true,
+        tabs: true,
+        motion: {
+          enable: true,
+          async: false,
+          transition: {
+            post_block: "fadeIn",
+            post_header: "slideDownIn",
+            post_body: "slideDownIn",
+            coll_header: "slideLeftIn",
+            sidebar: "slideUpIn",
+          },
+        },
+        duoshuo: {
+          userId: "0",
+          author: "博主",
+        },
+        algolia: {
+          applicationID: "",
+          apiKey: "",
+          indexName: "",
+          hits: { per_page: 10 },
+          labels: {
+            input_placeholder: "Search for Posts",
+            hits_empty: "We didn't find any results for the search: ${query}",
             hits_stats: "${hits} results found in ${time} ms",
           },
         },
