@@ -1342,8 +1342,8 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
         <category>NewCoder</category>
       </categories>
       <tags>
-        <tag>NewCoder</tag>
         <tag>动态规划</tag>
+        <tag>NewCoder</tag>
         <tag>单调队列</tag>
       </tags>
   </entry>
