@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>2020牛客暑期多校训练营（第三场）</title>
-    <url>/ZLY201.github.io/2020/07/19/2020%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%89%E5%9C%BA%EF%BC%89/</url>
+    <url>https://ZLY201.github.io/2020/07/19/2020%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%89%E5%9C%BA%EF%BC%89/</url>
     <content><![CDATA[<h1 id="2020牛客暑期多校训练营（第三场）"><a href="#2020牛客暑期多校训练营（第三场）" class="headerlink" title="2020牛客暑期多校训练营（第三场）"></a><a href="https://ac.nowcoder.com/acm/contest/5668#question" target="_blank" rel="noopener">2020牛客暑期多校训练营（第三场）</a></h1><h2 id="B-Classical-String-Problem"><a href="#B-Classical-String-Problem" class="headerlink" title="B.Classical String Problem"></a>B.Classical String Problem</h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个字符串，有两种操作，一种是问你第$x$个字符是什么，第二种是将前$x(x &gt; 0)$字符移动到末尾，或者将后$x(x &lt; 0)$移动到开头</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑在每次询问前，如果将前$x$字符移到了后面，将后$y$字符移动到了前面，那么其相当于是将前$x-y$字符移动到了尾部，所以我们在每次询问前记录其移动总和然后$O(1)$回答就好了</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -52,7 +52,7 @@
   </entry>
   <entry>
     <title>ACM最短路</title>
-    <url>/ZLY201.github.io/2020/08/23/ACM%E6%9C%80%E7%9F%AD%E8%B7%AF/</url>
+    <url>https://ZLY201.github.io/2020/08/23/ACM%E6%9C%80%E7%9F%AD%E8%B7%AF/</url>
     <content><![CDATA[<h2 id="最短路算法介绍及简略证明"><a href="#最短路算法介绍及简略证明" class="headerlink" title="最短路算法介绍及简略证明"></a>最短路算法介绍及简略证明</h2><h3 id="公共前提"><a href="#公共前提" class="headerlink" title="公共前提"></a>公共前提</h3><p>对于连通图$G=(V,E)$，$|V|=n$，$|E|=m$，$w_{i,j}$表示节点$i$和$j$间的权值，我们需要求得对于任意给定的节点$s$和$t$，$w_{s,t}$的最小值</p>
 <h3 id="Floyd-算法"><a href="#Floyd-算法" class="headerlink" title="$Floyd$算法"></a>$Floyd$算法</h3><h4 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h4><p>对于任意两个节点$i$，$j$，若能找到一个节点$k$使得$w_{i,k}+w_{k,j}&lt;w_{i,j}$，那么我们更新$w_{i,j}$的值为$w_{i,k}+w_{k,j}$，对于$\forall i,j,k \in [1,n]$，我们比较$w_{i,k}+w_{k,j}$和$w_{i,j}$的关系，最后$w_{s,t}$即为所求值</p>
 <h4 id="算法证明"><a href="#算法证明" class="headerlink" title="算法证明"></a>算法证明</h4><p>首先考虑初始情况，对于节点$i$和$j$，要么联通（仅有$i$至$j$的一条边），要么不连通（权值为$\infty$），在第一次迭代更新时，若$\exists k$使得$w_{i,k}+w_{k,j}&lt;w_{i,j}$，那么我们会将节点$k$加入到联通$i,j$的最短链中，在下一次迭代，我们又会更新$i,k$和$k,j$的中间节点，如此往复，最终我们会得到联通$i,j$的一条最短链，并且该链中任意两点间的距离均为最短，则此时$w_{s,t}$为所求</p>
@@ -96,7 +96,7 @@
   </entry>
   <entry>
     <title>Max Sum Plus Plus HDU - 1024</title>
-    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201024/</url>
+    <url>https://ZLY201.github.io/2020/07/11/HDU%20-%201024/</url>
     <content><![CDATA[<h2 id="Max-Sum-Plus-Plus-HDU-1024"><a href="#Max-Sum-Plus-Plus-HDU-1024" class="headerlink" title="Max Sum Plus Plus HDU - 1024"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1024" target="_blank" rel="noopener">Max Sum Plus Plus HDU - 1024</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将$n$个数分成$m$组互不相交的连续子序列（$m$组不一定包含所有数），问你这$m$组的和最大是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>假设前$i$个数已经分成了$j$组，那么第$i$个数可以分到$j$组中的任意一组或者变成第$j+1$组的第一个数<br>由此我们定义$dp[i][j]$为前$i$个数分成$j$组的最大值，那么转移方程为：</p>
 <script type="math/tex; mode=display">dp[i][j]=max(dp[i-1][j] + a[i], (max_{k=1}^{i-1}dp[k][j-1]) + a[i])</script><p>其中$dp[i-1][j] + a[i]$表示将第$i$个数分到前$j$组中的任意一组，$(max_{k=1}^{i-1}dp[k][j-1]) + a[i]$表示将第$i$个数自成一组并合并到前$k$个数分成$j-1$组中最大的情况中</p>
@@ -116,7 +116,7 @@
   </entry>
   <entry>
     <title>FatMouse&#39;s Speed HDU - 1160</title>
-    <url>/ZLY201.github.io/2020/07/12/HDU%20-%201160/</url>
+    <url>https://ZLY201.github.io/2020/07/12/HDU%20-%201160/</url>
     <content><![CDATA[<h2 id="FatMouse’s-Speed-HDU-1160"><a href="#FatMouse’s-Speed-HDU-1160" class="headerlink" title="FatMouse’s Speed HDU - 1160"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1160" target="_blank" rel="noopener">FatMouse’s Speed HDU - 1160</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你$1-k$每个人的$W$和$S$，让你构造一个$W[m[1]] &lt; W[m[2]] &lt; … &lt; W[m[n]]$和$S[m[1]] &gt; S[m[2]] &gt; … &gt; S[m[n]]$的序列，其中$m$为每个人的标号，输出$n$和序列$m$</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将数组按照$W$优先降序，$S$优先升序（一会说为什么反过来）排序，$dp[i]$表示以$i$为结尾的序列最大长度，那么对于$\forall j &lt; i,\ 如果W[i] &lt; W[j] \ \&amp;\&amp; \ S[i] &gt; S[j]$，那么$dp[i] = max(dp[j]) + 1$，我们可以使用类似于并查集的数组反向记录$dp[j] + 1&gt;dp[i]$的$j$的标号，然后回溯输出序列，由于这样记录下来的序列是反向的，所以前面我们需要将比较条件反过来排序</p>
 <p>注：这题比较坑的是输入，cin是从后往前运行的，所以++cnt要放在后面，而且读入EOF会使得cnt多加一次，所以读完后要将其减一</p>
@@ -135,7 +135,7 @@
   </entry>
   <entry>
     <title>免费馅饼 HDU - 1176</title>
-    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201176/</url>
+    <url>https://ZLY201.github.io/2020/07/11/HDU%20-%201176/</url>
     <content><![CDATA[<h2 id="免费馅饼-HDU-1176"><a href="#免费馅饼-HDU-1176" class="headerlink" title="免费馅饼 HDU - 1176"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1176" target="_blank" rel="noopener">免费馅饼 HDU - 1176</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有一条坐标轴，范围为$[0, 10]$，有$n$个馅饼分别会在$t_{i}$秒落在$x_{i}$的位置，你的初始位置为5，每秒能向左或向右移动一格，问你你能拾取的最大数量的馅饼个数是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于你每次只能向左或向右移动一格，那么在$t$秒你有三种可选择的状态：</p>
 <ol>
@@ -160,7 +160,7 @@
   </entry>
   <entry>
     <title>Phalanx HDU - 2859</title>
-    <url>/ZLY201.github.io/2020/07/12/HDU%20-%202859/</url>
+    <url>https://ZLY201.github.io/2020/07/12/HDU%20-%202859/</url>
     <content><![CDATA[<h2 id="Phalanx-HDU-2859"><a href="#Phalanx-HDU-2859" class="headerlink" title="Phalanx HDU - 2859"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2859" target="_blank" rel="noopener">Phalanx HDU - 2859</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个$n \times n$的字符矩阵，问你其最大的对称子矩阵的大小</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑现在已经有了一个以$(i, j)$为左下角，$m \times m$大小的子矩阵，我们要想将其扩大，那么必须以$(i + 1, j - 1)$为左下角并且$\forall k \leq m+1,\ s[i+1-k]=s[j-1+k]$</p>
 <p>那么我们定义$dp[i][j]$表示以$(i, j)$为左下角的对称矩阵的大小，如果$\forall k \leq dp[i-1][j+1]+1，s[i+1-k]=s[j-1+k]$，那么$dp[i][j]=dp[i-1][j+1]+1$，否则$dp[i][j]=max(k), \forall l \leq k,\ s[i+1-l]=s[j-1+l]$</p>
@@ -178,7 +178,7 @@
   </entry>
   <entry>
     <title>Tickets HDU - 1260</title>
-    <url>/ZLY201.github.io/2020/07/11/HDU%20-%201260/</url>
+    <url>https://ZLY201.github.io/2020/07/11/HDU%20-%201260/</url>
     <content><![CDATA[<h2 id="Tickets-HDU-1260"><a href="#Tickets-HDU-1260" class="headerlink" title="Tickets HDU - 1260"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1260" target="_blank" rel="noopener">Tickets HDU - 1260</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有$k$个人去电影院买票，第$i$个人的买票时间为$a[i]$，第$i$和第$i+1$个人一起买票的时间为$b[i]$，问你最少花多长时间可以把票卖完</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑第i个人的状态有：</p>
 <ol>
@@ -201,7 +201,7 @@
   </entry>
   <entry>
     <title>Race to 1 Again LightOJ - 1038</title>
-    <url>/ZLY201.github.io/2020/07/26/LightOJ%20-%201038/</url>
+    <url>https://ZLY201.github.io/2020/07/26/LightOJ%20-%201038/</url>
     <content><![CDATA[<h2 id="Race-to-1-Again-LightOJ-1038"><a href="#Race-to-1-Again-LightOJ-1038" class="headerlink" title="Race to 1 Again LightOJ - 1038"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1038" target="_blank" rel="noopener">Race to 1 Again LightOJ - 1038</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个正整数$D$，每次我们选择一个$D$的因子$k$使得$D/=k$，问你将$D$变成$1$的操作次数的期望是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑将$D$除以$k$后得到$D’=D/k$，那么$E(D)=\frac{1}{\sum_{k|D}}\times(E(D’)+1)$<br>那么将范围内的数筛一遍因子，按照公式转移即可，初始条件为$E[1]=0$，时间复杂度$O(n\sqrt{n}+T)$</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -220,7 +220,7 @@
   </entry>
   <entry>
     <title>Digits of Factorial LightOJ - 1045</title>
-    <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201045/</url>
+    <url>https://ZLY201.github.io/2020/07/05/LightOJ%20-%201045/</url>
     <content><![CDATA[<h2 id="Digits-of-Factorial-LightOJ-1045"><a href="#Digits-of-Factorial-LightOJ-1045" class="headerlink" title="Digits of Factorial LightOJ - 1045"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1045" target="_blank" rel="noopener">Digits of Factorial LightOJ - 1045</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你一个n和m，输出n的阶乘在m进制下的位数</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑n!在m下的位数是k，则有：</p>
 <p>$m^{k-1}\leq n!&lt;m^{k}$</p>
@@ -241,7 +241,7 @@
   </entry>
   <entry>
     <title>Discovering Gold LightOJ - 1030</title>
-    <url>/ZLY201.github.io/2020/07/25/LightOJ%20-%201030/</url>
+    <url>https://ZLY201.github.io/2020/07/25/LightOJ%20-%201030/</url>
     <content><![CDATA[<h2 id="Discovering-Gold-LightOJ-1030"><a href="#Discovering-Gold-LightOJ-1030" class="headerlink" title="Discovering Gold LightOJ - 1030"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1030" target="_blank" rel="noopener">Discovering Gold LightOJ - 1030</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有一个$1\times n$的地图，你的初始位置为$(1, 1)$，你每次通过掷骰子来确定你的向前移动步数，每个格子上有$a_{i}$糖果，你可以获取你所在格子上的所有糖果（经过的无法获取），问你最终你获取的糖果数目的期望值是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于你每次可以向前移动的数目为$1\sim6$，那么$dp[i]$表示第$i$个格子上获得的糖果的期望数目，那么转移方程为$dp[i]=\frac{1}{min(n-i,6)}\sum_{j=1}^{min(n-i,6)}dp[i+j]$<br>初始状态为$\forall i\in [1,n],dp[i]=a[i]$</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -259,7 +259,7 @@
   </entry>
   <entry>
     <title>Just another Robbery LightOJ - 1079</title>
-    <url>/ZLY201.github.io/2020/07/26/LightOJ%20-%201079/</url>
+    <url>https://ZLY201.github.io/2020/07/26/LightOJ%20-%201079/</url>
     <content><![CDATA[<h2 id="Just-another-Robbery-LightOJ-1079"><a href="#Just-another-Robbery-LightOJ-1079" class="headerlink" title="Just another Robbery LightOJ - 1079"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1079" target="_blank" rel="noopener">Just another Robbery LightOJ - 1079</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有$n$家银行，每家银行被抢后抓的概率是$p_{i}$，可获得的金钱是$a_{i}$，问你在被抓几率最高为$P$的情况下可获得的最大金钱数目是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将危险率转化为安全率，那么即求在安全程度最低为$1-P$的情况下可获得的最大金钱数目，将金钱看成体积，安全程度看成重量，那么问题被转换成为了概率下的01背包问题，$dp[i]$表示在获取金钱数目为$i$时的安全程度，其状态转移方程即为：</p>
 <script type="math/tex; mode=display">dp[i] = max(dp[i],dp[i-a[i]]\times p[i])</script><h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -279,7 +279,7 @@
   </entry>
   <entry>
     <title>Dangerous Maze LightOJ - 1027</title>
-    <url>/ZLY201.github.io/2020/07/25/LightOJ%20-%201027/</url>
+    <url>https://ZLY201.github.io/2020/07/25/LightOJ%20-%201027/</url>
     <content><![CDATA[<h2 id="A-Dangerous-Maze-LightOJ-1027"><a href="#A-Dangerous-Maze-LightOJ-1027" class="headerlink" title="A Dangerous Maze LightOJ - 1027"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1027" target="_blank" rel="noopener">A Dangerous Maze LightOJ - 1027</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>迷宫中有$n$扇门，到达每扇门的时间为$|x|$，如果$x$大于$0$说明该扇门通往出口，否则该扇门会将你传送至原点，问你走出迷宫所花时间的期望是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先，对于任何一扇门，其被选择的概率均为$\frac{1}{n}$，那么我们假设通往出口的门的数量为$x$，其所需时间分别为$a_{1},a_{2},…,a_{x}$,通向原点的门的数量为$y$，其所需时间分别为$b_{1},b_{2},…,b_{y}$<br>显然对于通向出口的门$i$，其对于期望的贡献为$E_{a_{i}}=\frac{1}{n}\times a_{i}$，而对于通向原点的门$i$，由于最终一定能够出去，设出去的时间期望为$E$，那么$E_{b_{i}}=\frac{1}{n}\times (b_{i} + E)$，则有：</p>
 <script type="math/tex; mode=display">E=\sum_{i=1}^{x}E_{a_{i}}+\sum_{i=1}^{y}E_{b_{i}}=\sum_{i=1}^{x}\frac{1}{n}\times a_{i}+\sum_{i=1}^{y}\frac{1}{n}\times (b_{i} + E)</script><p>其中$n=x+y$<br>化简后我们可以得到$E=\frac{1}{x}\times(\sum_{i=1}^{x}a_{i}+\sum_{i=1}^{y}b_{i})$</p>
@@ -297,7 +297,7 @@
   </entry>
   <entry>
     <title>How Many Points? LightOJ - 1077</title>
-    <url>/ZLY201.github.io/2020/07/05/LightOJ%20-%201077/</url>
+    <url>https://ZLY201.github.io/2020/07/05/LightOJ%20-%201077/</url>
     <content><![CDATA[<h2 id="How-Many-Points-LightOJ-1077"><a href="#How-Many-Points-LightOJ-1077" class="headerlink" title="How Many Points? LightOJ - 1077"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1077" target="_blank" rel="noopener">How Many Points? LightOJ - 1077</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>多组输入，每次给你两个坐标，问你这两点连成的线段上坐标均为整数的个数是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考虑x，y为满足条件的一组坐标，那么有</p>
 <p>$\frac{y_{2}-y_{1}}{x_{2}-x_{1}}=\frac{y-y_{1}}{x-x_{1}}$</p>
@@ -320,7 +320,7 @@
   </entry>
   <entry>
     <title>A New Function LightOJ - 1098</title>
-    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201098/</url>
+    <url>https://ZLY201.github.io/2020/07/06/LightOJ%20-%201098/</url>
     <content><![CDATA[<h2 id="A-New-Function-LightOJ-1098"><a href="#A-New-Function-LightOJ-1098" class="headerlink" title="A New Function LightOJ - 1098"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1098" target="_blank" rel="noopener">A New Function LightOJ - 1098</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>定义$SOD(n)$为$n$除$1$和$n$外的所有正因子之和，例如：<br>$SOD(24)=2+3+4+6+8+12=35$<br>定义$CSOD(n)=\sum_{i=1}^{n}SOD(i)$<br>让你求$2e9$内任意n的$CSOD(n)$</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对于每一个数，我们可以把它写成$a \times b$的形式，那么对于答案的贡献显然就是$a+b(a!=b!=1!=n)$，而对于一个因子$i$，它在$n$内出现的次数应当是$\frac{n}{i}-1$，举个例子：<br>假设$n = 12$<br>$i = 2$时<br>$4 = 2 \times 2$<br>$6 = 2 \times 3$<br>$8 = 2 \times 4$<br>$10 = 2 \times 5$<br>$12 = 2 \times 6$<br>$2$需要被统计$\frac{12}{2}-1= 5$次</p>
 <p>但是这样的复杂度是$O(n)$，显然不可行，观察上例，发现右边的因子是连续的，并且根据左边因子的出现次数我们可以得到一个等差数列，这样一来，我们就可以在$O(\sqrt{n})$时间内求出答案</p>
@@ -340,7 +340,7 @@
   </entry>
   <entry>
     <title>Bank Robbery LightOJ - 1163</title>
-    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201163/</url>
+    <url>https://ZLY201.github.io/2020/07/06/LightOJ%20-%201163/</url>
     <content><![CDATA[<h2 id="Bank-Robbery-LightOJ-1163"><a href="#Bank-Robbery-LightOJ-1163" class="headerlink" title="Bank Robbery LightOJ - 1163"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1163" target="_blank" rel="noopener">Bank Robbery LightOJ - 1163</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你k，输出所有使得$A - [\frac{A}{10}] = K$成立的A</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>$A - [\frac{A}{10}] = K$<br>$A - \frac{A - A % 10}{10} = k$<br>$9A = 10k - A % 10$<br>$9A = 10k - m$</p>
 <p>由于$0\leq m \leq 9$，直接枚举即可</p>
@@ -358,7 +358,7 @@
   </entry>
   <entry>
     <title>Finding LCM LightOJ - 1215</title>
-    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201215/</url>
+    <url>https://ZLY201.github.io/2020/07/06/LightOJ%20-%201215/</url>
     <content><![CDATA[<h2 id="Finding-LCM-LightOJ-1215"><a href="#Finding-LCM-LightOJ-1215" class="headerlink" title="Finding LCM LightOJ - 1215"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1215" target="_blank" rel="noopener">Finding LCM LightOJ - 1215</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>$LCM(a, b, c) = L$<br>现在告诉你a, b, L，问你c的最小值是多少</p>
 <h3 id="解题思路（一）"><a href="#解题思路（一）" class="headerlink" title="解题思路（一）"></a>解题思路（一）</h3><p>设$lcm = LCM(a, b)$，即求最小的c使得$LCM(lcm, c) = L$<br>设$g = gcd(lcm, c)$，那么$\frac{lcm \times c}{g}=L$<br>$c = \frac{L}{lcm} \times g$<br>设$k = \frac{L}{lcm}$，那么$c = k \times g$<br>又因为$gcd(lcm, c) = g$<br>所以$gcd(lcm, k \times g) = g$<br>即$gcd(\frac{lcm}{g}, k) = 1$<br>由于$k$已知，要使$c$最小即使$g$最小，其中$g|lcm$<br>那么我们$O(\sqrt{n})$时间找到最小能够使得$gcd(\frac{lcm}{g}, k) = 1$成立的$lcm$的因子即可</p>
 <h3 id="AC代码（一）"><a href="#AC代码（一）" class="headerlink" title="AC代码（一）"></a>AC代码（一）</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -381,7 +381,7 @@
   </entry>
   <entry>
     <title>LCM Extreme LightOJ - 1375</title>
-    <url>/ZLY201.github.io/2020/07/06/LightOJ%20-%201375/</url>
+    <url>https://ZLY201.github.io/2020/07/06/LightOJ%20-%201375/</url>
     <content><![CDATA[<h2 id="LCM-Extreme-LightOJ-1375"><a href="#LCM-Extreme-LightOJ-1375" class="headerlink" title="LCM Extreme LightOJ - 1375"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1375" target="_blank" rel="noopener">LCM Extreme LightOJ - 1375</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">allPairLcm</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">            res += lcm(i, j); <span class="comment">// lcm means least common multiple</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>给出n，输出上述程序的运行结果</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>$res=\sum_{i=1}^{n}\sum_{j=i+1}^{n}lcm(i, j)=\sum_{i=2}^{n}\sum_{j=1}^{i-1}lcm(i, j)$<br>令$s(x)=\sum_{i=1}^{x-1}lcm(i, x)$，那么答案就是$\sum_{i=2}^{n}s(i)$，显然可以预处理<br>对于$s(x)$，有：<br>$s(x)=\sum_{i=1}^{x-1}lcm(i, x)=\sum_{i=1}^{x-1}\frac{i \times x}{gcd(i, x)}=x \times \sum_{i=1}^{x-1}\frac{i}{gcd(i, x)}$<br>令$g = gcd(i, x)$<br>$s(x)=x \times \sum_{i=1}^{x-1}\frac{i}{g}$<br>其中$g|x$，并且$gcd(i, x) = g$<br>令$i = \frac{i}{g}$，那么$s(x)=x \times \sum_{i=1}^{\frac{x}{g}-1}i$<br>其中$gcd(i, \frac{x}{g})=1$，即$i$与$\frac{x}{g}$互质<br>由欧拉定理可知</p>
@@ -405,7 +405,7 @@
   </entry>
   <entry>
     <title>Birthday Paradox LightOJ - 1104</title>
-    <url>/ZLY201.github.io/2020/07/25/LightOJ%20-%201104/</url>
+    <url>https://ZLY201.github.io/2020/07/25/LightOJ%20-%201104/</url>
     <content><![CDATA[<h2 id="Birthday-Paradox-LightOJ-1104"><a href="#Birthday-Paradox-LightOJ-1104" class="headerlink" title="Birthday Paradox LightOJ - 1104"></a><a href="http://lightoj.com/volume_showproblem.php?problem=1104" target="_blank" rel="noopener">Birthday Paradox LightOJ - 1104</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>问你当一年有$n$天时，你和最少多少个人中两个人生日相同的概率不低于$0.5$</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>假设有$m$个人<br>对于第一个人其生日有$n$种可能<br>对于第二个人其生日与第一个人不相同的概率为$\frac{n-1}{n}$<br>对于第二个人其生日与第一个人和第二个人均不相同的概率为$\frac{n-2}{n}$<br>…<br>对于第$m$个人其生日与之前所有人均不相同的概率为$\frac{n-m+1}{n}$<br>那么这$m$个人两两生日不同的概率$p=1 \times \frac{n-1}{n}\times\frac{n-2}{n}\times…\times \frac{n-m+1}{n}=\frac{n!}{(n-m)!\times n^{n}}$<br>那么本题即要求$1-p\leq0.5$，即$p\geq0.5$<br>考虑$n$的范围太大，阶乘会溢出，我们可以采用对数的形式对不等式进行化简</p>
 <script type="math/tex; mode=display">\frac{n!}{(n-m)!\times n^{n}}\geq0.5</script><script type="math/tex; mode=display">lg^{n!}-lg^{(n-m)!}-nlg^{n}\geq-1</script><script type="math/tex; mode=display">lg^{n!}-lg^{(n-m)!}-nlg^{n}+1\geq0</script><script type="math/tex; mode=display">lg^{1}+lg^{2}+...+lg^{n}-(lg^{1}+lg^{2}+...+lg^{n-m})-nlg^{n}+1\geq0</script><script type="math/tex; mode=display">\sum_{i=1}^{n}lg^i-\sum_{i=1}^{n-m}lg^i-nlg^{n}+1\geq0</script><p>这样我们预处理出$1e^{5}$以内的$lg$和然后对$m$进行二分即可</p>
@@ -423,7 +423,7 @@
   </entry>
   <entry>
     <title>NewCoder - Boundary</title>
-    <url>/ZLY201.github.io/2020/07/14/NewCoder%20-%20Boundary/</url>
+    <url>https://ZLY201.github.io/2020/07/14/NewCoder%20-%20Boundary/</url>
     <content><![CDATA[<h2 id="NewCoder-Boundary"><a href="#NewCoder-Boundary" class="headerlink" title="NewCoder - Boundary"></a><a href="https://ac.nowcoder.com/acm/contest/5667/B" target="_blank" rel="noopener">NewCoder - Boundary</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一些点，问你过原点的圆能够包含这些点的最大数目是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于三个点可以确定一个圆，那么我们$O(n^{2})$将任意两个点和原点形成的圆心坐标求出来，然后对这些坐标进行排序，然后$O(n^{2})$的时间统计圆心相同的数目，取其中的最大值即可，总复杂度$O(n^{2}log_{2}^{n})$</p>
 <p>那么其中涉及到三个问题</p>
@@ -448,7 +448,7 @@
   </entry>
   <entry>
     <title>NewCoder - Easy Integration</title>
-    <url>/ZLY201.github.io/2020/07/14/NewCoder%20-%20Easy%20Integration/</url>
+    <url>https://ZLY201.github.io/2020/07/14/NewCoder%20-%20Easy%20Integration/</url>
     <content><![CDATA[<h2 id="NewCoder-Easy-Integration"><a href="#NewCoder-Easy-Integration" class="headerlink" title="NewCoder - Easy Integration"></a><a href="https://ac.nowcoder.com/acm/contest/5666/J" target="_blank" rel="noopener">NewCoder - Easy Integration</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给出$n$，让你输出$\int_{0}^{1}(x-x^{2})^{n}$的值</p>
 <p>注：这个值可以被表示成$\frac{p}{q}$的形式，请使用$(p \cdot q^{-1}) \bmod {998244353}$的形式</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>根据分布积分法求出$int_{0}^{1}(x-x^{2})^{n}$的通项公式为：</p>
@@ -470,7 +470,7 @@
   </entry>
   <entry>
     <title>NewCoder - Cover the Tree</title>
-    <url>/ZLY201.github.io/2020/07/14/NewCoder%20-%20Cover%20the%20Tree/</url>
+    <url>https://ZLY201.github.io/2020/07/14/NewCoder%20-%20Cover%20the%20Tree/</url>
     <content><![CDATA[<h2 id="NewCoder-Cover-the-Tree"><a href="#NewCoder-Cover-the-Tree" class="headerlink" title="NewCoder - Cover the Tree"></a><a href="https://ac.nowcoder.com/acm/contest/5667/C" target="_blank" rel="noopener">NewCoder - Cover the Tree</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一颗无根树，树上任意两个节点可以形成一条链，问你最少多少个链可以将所有边包含进来</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>贴一个官方题解<br><img src="../NewCoder - Cover the Tree/NewCoder - Cover the Tree官方题解.png" alt=""></p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -488,7 +488,7 @@
   </entry>
   <entry>
     <title>Common Subsequence POJ - 1458</title>
-    <url>/ZLY201.github.io/2020/07/12/POJ%20-%201458/</url>
+    <url>https://ZLY201.github.io/2020/07/12/POJ%20-%201458/</url>
     <content><![CDATA[<h2 id="Common-Subsequence-POJ-1458"><a href="#Common-Subsequence-POJ-1458" class="headerlink" title="Common Subsequence POJ - 1458"></a><a href="http://poj.org/problem?id=1458" target="_blank" rel="noopener">Common Subsequence POJ - 1458</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你两个字符串$s$和$p$，让你求最长公共子串的长度</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对于字符$s[i]$和$p[j]$可以分为相同和不同两种情况，如果相同则可以将其加入到$s[i]$之前与$p[j]$之前的最长公共子串中去，否则忽略，那么我们定义$dp[i][j]$表示$s$中前$i$个字符与$p$中前$j$个字符的最长公共子串的长度，其状态转移方程为：</p>
 <script type="math/tex; mode=display">dp[i][j]=
@@ -512,7 +512,7 @@
   </entry>
   <entry>
     <title>NewCoder - Fake Maxpooling</title>
-    <url>/ZLY201.github.io/2020/07/14/NewCoder%20-%20Fake%20Maxpooling/</url>
+    <url>https://ZLY201.github.io/2020/07/14/NewCoder%20-%20Fake%20Maxpooling/</url>
     <content><![CDATA[<h2 id="NewCoder-Fake-Maxpooling"><a href="#NewCoder-Fake-Maxpooling" class="headerlink" title="NewCoder - Fake Maxpooling"></a><a href="https://ac.nowcoder.com/acm/contest/5667/F" target="_blank" rel="noopener">NewCoder - Fake Maxpooling</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>定义矩阵$A$，其中$A_{i,j}=lcm(i,j)$，让你用一个$k \times k$的矩阵取框这个$A$，问你所有$k \times k$矩阵中的最大值之和是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先是官方题解<br><img src="../NewCoder - Fake Maxpooling/NewCoder - Fake Maxpooling官方题解.png" alt=""></p>
 <p>后来我看到有一个很巧妙的dp做法<br>我们首先将$A_{ij}$给求出来，然后$dp[i][j]$表示以$(1, 1)$为左上角，以$(i, j)$为右下角的最大值，那么其状态转移方程为：</p>
@@ -532,7 +532,7 @@
   </entry>
   <entry>
     <title>NewCoder - Infinite String Comparision</title>
-    <url>/ZLY201.github.io/2020/07/13/NewCoder%20-%20Infinite%20String%20Comparision/</url>
+    <url>https://ZLY201.github.io/2020/07/13/NewCoder%20-%20Infinite%20String%20Comparision/</url>
     <content><![CDATA[<h2 id="NewCoder-Infinite-String-Comparision"><a href="#NewCoder-Infinite-String-Comparision" class="headerlink" title="NewCoder - Infinite String Comparision"></a><a href="https://ac.nowcoder.com/acm/contest/5666/F" target="_blank" rel="noopener">NewCoder - Infinite String Comparision</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将两个字符串$s$和$p$无限延长，问你这两个字符串的大小关系</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将两个字符串分别延长两倍后进行比较即可<br>证明：<br>如果在$min(len(s), len(p))$之内有不同的字符串，那么结果显然<br>否则假设$len(s) &gt; len(p)$<br>令$s = s + s，p = p + p$，由于在$len(p)$之内$s$和$p$相同，那么<br>$s = p + s’ + p + s’$<br>$p = p + p$<br>由于$(s’ + p)$的长度显然大于$p$的长度，那么我们必定可以比较出$s$与$p$的关系</p>
 <p>$len(s) &lt; len(p)$同理</p>
@@ -550,7 +550,7 @@
   </entry>
   <entry>
     <title>Interesting Yang Hui Triangle POJ - 3146</title>
-    <url>/ZLY201.github.io/2020/07/09/POJ%20-%203146/</url>
+    <url>https://ZLY201.github.io/2020/07/09/POJ%20-%203146/</url>
     <content><![CDATA[<h2 id="Interesting-Yang-Hui-Triangle-POJ-3146"><a href="#Interesting-Yang-Hui-Triangle-POJ-3146" class="headerlink" title="Interesting Yang Hui Triangle POJ - 3146"></a><a href="http://poj.org/problem?id=3146" target="_blank" rel="noopener">Interesting Yang Hui Triangle POJ - 3146</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>问你杨辉三角第n行有多少个数不能被p整除</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>杨辉三角第n行第i个数为$C_{n}^{i-1}$<br>根据卢卡斯定理我们可知，假设$a$和$b$在$p$进制下分别表示为$a_{k}a_{k-1}…a_{0}$和$b_{k}b_{k-1}…b_{0}$，那么<br>$C_{a}^{b} \equiv {C_{a_{k}}^{b_{k}}C_{a_{k-1}}^{b_{k-1}}…C_{a_{0}}^{b_{0}}} \pmod {p}$<br>要使得$C_{a}^{b}$不能被p整除，那么$\forall {i} \in [0, k]$，$a_{i} \geq b_{i}$<br>根据计数原理，我们求出p进制下的$n=n_{k}n_{k-1}…n_{0}$，那么答案即为$(n_{0} + 1)(n_{1} + 1)…(n_{k} + 1)$</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -567,7 +567,7 @@
   </entry>
   <entry>
     <title>青蛙的约会 POJ - 1061</title>
-    <url>/ZLY201.github.io/2020/07/08/POJ%20-%201061/</url>
+    <url>https://ZLY201.github.io/2020/07/08/POJ%20-%201061/</url>
     <content><![CDATA[<h2 id="青蛙的约会-POJ-1061"><a href="#青蛙的约会-POJ-1061" class="headerlink" title="青蛙的约会 POJ - 1061"></a><a href="http://poj.org/problem?id=1061" target="_blank" rel="noopener">青蛙的约会 POJ - 1061</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>两只青蛙在L长的圆形跑道上玩跳跳乐，青蛙A的出发点坐标为x，一次能跳m米，青蛙B的出发点坐标y，一次能跳n米，他们跳一次时间相同，同时起跳，问你跳几次能相遇</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设$t$次后相遇<br>$x + mt \equiv {y + nt} \pmod {L}$<br>$(x + mt) - (y + nt) = qL$<br>$(m - n)t - qL = (y - x)$<br>$(n - m)t + qL = (x - y)$<br>是不是长得很像$ax + by = c$<br>用拓展欧几里得定理求解t即可</p>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -584,7 +584,7 @@
   </entry>
   <entry>
     <title>Treats for the Cows POJ - 3186</title>
-    <url>/ZLY201.github.io/2020/07/12/POJ%20-%203186/</url>
+    <url>https://ZLY201.github.io/2020/07/12/POJ%20-%203186/</url>
     <content><![CDATA[<h2 id="Treats-for-the-Cows-POJ-3186"><a href="#Treats-for-the-Cows-POJ-3186" class="headerlink" title="Treats for the Cows POJ - 3186"></a><a href="http://poj.org/problem?id=3186" target="_blank" rel="noopener">Treats for the Cows POJ - 3186</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有一个数组$a$，每次你可以将数组的头部或尾部添加到新数组$b$的结尾，问你$W = \sum_{i=1}^{n}b_{i} \times i$的最大值是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对于$b[i]$仅有两个状态，要么是当前$a$数组的开头，要么是$a$数组的结尾，那么我们定义$dp[i][j]$为当前$a$数组开头取了$i$个，结尾取了$j$个的最大值，其状态转移方程为：</p>
 <script type="math/tex; mode=display">dp[i][j]=max(dp[i-1][j] + a[i] \times (i + j), dp[i][j - 1] + a[n - j + 1] \times (i + j))</script><p>初始条件为：</p>
@@ -607,7 +607,7 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
   </entry>
   <entry>
     <title>C Looooops POJ - 2115</title>
-    <url>/ZLY201.github.io/2020/07/08/POJ%20-%202115/</url>
+    <url>https://ZLY201.github.io/2020/07/08/POJ%20-%202115/</url>
     <content><![CDATA[<h2 id="C-Looooops-POJ-2115"><a href="#C-Looooops-POJ-2115" class="headerlink" title="C Looooops POJ - 2115"></a><a href="http://poj.org/problem?id=2115" target="_blank" rel="noopener">C Looooops POJ - 2115</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (variable = A; variable != B; variable += C) &#123;</span><br><span class="line">	i = (i % (<span class="number">1</span> &lt;&lt; k));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>给你A，B，C和K问你上述代码中循环的次数是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设运行次数为$N$<br>$(A + C \times N) \bmod {2^{k}} = B$<br>$NC + M2^{k} = B - A$<br>是不是长得很像$ax + by = c$<br>利用拓展欧几里得算法求出最小的N即可</p>
@@ -625,7 +625,7 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
   </entry>
   <entry>
     <title>Making the Grade POJ - 3666</title>
-    <url>/ZLY201.github.io/2020/07/13/POJ%20-%203666/</url>
+    <url>https://ZLY201.github.io/2020/07/13/POJ%20-%203666/</url>
     <content><![CDATA[<h2 id="Making-the-Grade-POJ-3666"><a href="#Making-the-Grade-POJ-3666" class="headerlink" title="Making the Grade POJ - 3666"></a><a href="http://poj.org/problem?id=3666" target="_blank" rel="noopener">Making the Grade POJ - 3666</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将序列修改成单调不减的序列的最小成本是多少，假设修改前数组为$a$，修改后数组为$b$，成本定义为$\sum_{i=1}^{n}\lvert a_{i}-b_{i}\rvert$</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>模拟过后发现无论怎么改，对于最优解，修改后的数组中任意一个数在原数组中均能找到，我们定义$dp[i][j]$为前$i$序列中的最大值修改成$j$的情况，将$a$数组离散化到$[1, n]$区间之内，其状态转移方程为：</p>
 <script type="math/tex; mode=display">dp[i][j] = abs(a[i] - b[j]) + min(dp[i - 1][k]) \qquad k \leq j</script><p>具体可以参考下面几篇博客：<br><a href="https://www.cnblogs.com/vb4896/p/5877962.html" target="_blank" rel="noopener">https://www.cnblogs.com/vb4896/p/5877962.html</a><br><a href="https://blog.csdn.net/u011815404/article/details/88552887" target="_blank" rel="noopener">https://blog.csdn.net/u011815404/article/details/88552887</a></p>
@@ -643,7 +643,7 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
   </entry>
   <entry>
     <title>Milking Time POJ - 3616</title>
-    <url>/ZLY201.github.io/2020/07/13/POJ%20-%203616/</url>
+    <url>https://ZLY201.github.io/2020/07/13/POJ%20-%203616/</url>
     <content><![CDATA[<h2 id="Milking-Time-POJ-3616"><a href="#Milking-Time-POJ-3616" class="headerlink" title="Milking Time POJ - 3616"></a><a href="http://poj.org/problem?id=3616" target="_blank" rel="noopener">Milking Time POJ - 3616</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>在$N$时间之内有$M$次挤奶的机会，每次的开始时间为$start_{i}$，结束时间为$end_{i}$，每次挤奶的效率为$efficiency_{i}$，每次挤奶之后需要休息$R$小时，问你最大的效率和是多少</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先根据贪心策略，我们肯定优先选择结束时间早的时间段，所以我们先按照结束时间对时间段进行排序，现在假设我已经得到了$i$段之前的最大效率和，那么对于第$i + 1$个时间段，我可以将其添加到任意以$j$结尾，并且$start_{i} \geq end_{j} + R$的末尾，形成一个新的序列</p>
 <p>那么定义$dp[i]$为以第$i$段结尾的最大效率和，其状态转移方程为：</p>
@@ -662,7 +662,7 @@ dp[0][i] += dp[0][i - 1] + a[n - i + 1] * i \\
   </entry>
   <entry>
     <title>SaikrOJ - ipc2_5</title>
-    <url>/ZLY201.github.io/2020/07/27/SaikrOJ%20-%20ipc2_5/</url>
+    <url>https://ZLY201.github.io/2020/07/27/SaikrOJ%20-%20ipc2_5/</url>
     <content><![CDATA[<h2 id="SaikrOJ-ipc2-5"><a href="#SaikrOJ-ipc2-5" class="headerlink" title="SaikrOJ - ipc2_5"></a><a href="http://oj.saikr.com/problem/ipc2_5" target="_blank" rel="noopener">SaikrOJ - ipc2_5</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有一个数列，第$i$个数为$x_{i}$，它的长度为$n$</p>
 <p>给出了$a$，$b$，$c$，要找到一个$i$，使得$a(i+1)x_{i}^{2}+(b+1)ix_{i}+(c+i)=0$成立</p>
 <p>如果有多个$i$满足，要最小的那个$i$</p>
@@ -698,7 +698,7 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
   </entry>
   <entry>
     <title>Welcome To My Own Blog</title>
-    <url>/ZLY201.github.io/2020/07/03/hellow/</url>
+    <url>https://ZLY201.github.io/2020/07/03/hellow/</url>
     <content><![CDATA[<div style="text-align: center">
     <table>
         <tr><td colspan="2" style="text-align: center"><font size="4">博主个人信息</font></td></tr>
@@ -738,7 +738,7 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
   </entry>
   <entry>
     <title>luogu - 3556</title>
-    <url>/ZLY201.github.io/2020/09/15/luogu%20-%203556/</url>
+    <url>https://ZLY201.github.io/2020/09/15/luogu%20-%203556/</url>
     <content><![CDATA[<h2 id="luogu-3556-POI2013-MOR-Tales-of-seafaring"><a href="#luogu-3556-POI2013-MOR-Tales-of-seafaring" class="headerlink" title="luogu - 3556 [POI2013]MOR-Tales of seafaring"></a><a href="https://www.luogu.com.cn/problem/P3556" target="_blank" rel="noopener">luogu - 3556 [POI2013]MOR-Tales of seafaring</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定无向图$G=(V,E)$，$|V|=n$，$|E|=m$，有$k$个询问，问你$x$和$y$之间有没有长度为$d$的路径</p>
 <h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><p>$2\leq n \leq 5000$</p>
 <p>$1 \leq m \leq 5000$</p>
@@ -767,7 +767,7 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
   </entry>
   <entry>
     <title>ACM博弈论基础</title>
-    <url>/ZLY201.github.io/2020/07/23/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
+    <url>https://ZLY201.github.io/2020/07/23/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="博弈论基础"><a href="#博弈论基础" class="headerlink" title="博弈论基础"></a>博弈论基础</h1><p>博弈场景一般均满足以下条件：</p>
 <ol>
 <li>有两名选手参与博弈</li>
@@ -861,7 +861,7 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
   </entry>
   <entry>
     <title>唯一分解定理</title>
-    <url>/ZLY201.github.io/2020/07/05/%E5%94%AF%E4%B8%80%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86/</url>
+    <url>https://ZLY201.github.io/2020/07/05/%E5%94%AF%E4%B8%80%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<h2 id="唯一分解定理"><a href="#唯一分解定理" class="headerlink" title="唯一分解定理"></a>唯一分解定理</h2><p>根据欧拉定理，一个数n可以被写成如下格式</p>
 <p>$n = p_{1}^{a_{1}}p_{2}^{a_{2}}p_{3}^{a_{3}}…p_{k}^{a_{k}}$</p>
 <p>其中$p_{i}$为n的质因子</p>
@@ -885,7 +885,7 @@ Last = -\frac{a_{0}(i+1)x_{i}+b_{0}ix_{i}+c_{0}+i}{(i+1)x_{i}+ix_{i}+1}</script>
   </entry>
   <entry>
     <title>luogu - 1967</title>
-    <url>/ZLY201.github.io/2020/08/23/luogu%20-%201967/</url>
+    <url>https://ZLY201.github.io/2020/08/23/luogu%20-%201967/</url>
     <content><![CDATA[<h2 id="luogu-1967-货车运输"><a href="#luogu-1967-货车运输" class="headerlink" title="luogu - 1967 货车运输"></a><a href="https://www.luogu.com.cn/problem/P1967" target="_blank" rel="noopener">luogu - 1967 货车运输</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有$n$个城市，$m$条双向道路，每一条道路有限重，现在有$q$辆货车分别向$u_{i}$城市送货到$v_{i}$城市，问你在不超过限重的情况下每辆车能运送货物的最大重量是多少</p>
 <p>其中$1 \leq n &lt; 10^{4}$，$1 \leq m &lt; 5 \times 10^{4}$，$1 \leq q &lt; 3 \times 10^{4}$</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先很容易想到暴力的$Floyd$，转移方程也非常容易想到，即：</p>
@@ -910,7 +910,7 @@ G[i][j] = max(G[i][j], min(G[i][k], G[k][j]))</script><p>但是该算法时间�
   </entry>
   <entry>
     <title>对顶堆</title>
-    <url>/ZLY201.github.io/2020/07/26/%E5%AF%B9%E9%A1%B6%E5%A0%86/</url>
+    <url>https://ZLY201.github.io/2020/07/26/%E5%AF%B9%E9%A1%B6%E5%A0%86/</url>
     <content><![CDATA[<h2 id="对顶堆"><a href="#对顶堆" class="headerlink" title="对顶堆"></a>对顶堆</h2><h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><p>有$n$个人依次入队，每个人的身高不同，当第$i$个人入队时询问$1\sim i$中身高第$k$小的人是谁</p>
 <p>显然有一个$O(n^2)$的暴力算法，我们先将$n$个人的身高进行排序，并记录他们的入队次序，然后每次$O(n)$遍历找到$id$小于$i$的第$k$个人即可，但是当数据范围超过$1e^{5}$时该算法在时间上显然不能满足要求</p>
 <p>如果你足够细心，你会发现该问题的本质是求<strong>区间内的第$k$小</strong>，那么我们可以考虑优秀的主席树，时间复杂度$O(nlog_{2}^{n})$，时间上可以满足要求，但是主席树的空间消耗极高，我们想尝试找到一个既节约时间又节约空间的算法</p>
@@ -938,7 +938,7 @@ G[i][j] = max(G[i][j], min(G[i][k], G[k][j]))</script><p>但是该算法时间�
   </entry>
   <entry>
     <title>数论四大定理</title>
-    <url>/ZLY201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/</url>
+    <url>https://ZLY201.github.io/2020/07/07/%E6%95%B0%E8%AE%BA%E5%9B%9B%E5%A4%A7%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<h2 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>欧几里德算法又称辗转相除法，是指用于计算两个正整数a，b的最大公约数。其公式为$gcd(a, b) = gcd(b, a \bmod b)$</p>
 <h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>证明如下：<br>不妨设$a &gt; b$，$gcd(a, b)=n$<br>$a = k_{1}n$，$b = k_{2}n$<br>那么$a - b = (k_{1} - k_{2}) \times n$<br>易得$gcd(a, b) = gcd(b, a - b)=gcd(b, a - 2b)=…=gcd(b, a \bmod b)$</p>
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
@@ -987,7 +987,7 @@ G[i][j] = max(G[i][j], min(G[i][k], G[k][j]))</script><p>但是该算法时间�
   </entry>
   <entry>
     <title>基于遗传算法和线性规划的快递包装盒下料问题研究</title>
-    <url>/ZLY201.github.io/2020/09/01/%E5%9F%BA%E4%BA%8E%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E5%92%8C%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E7%9A%84%E5%BF%AB%E9%80%92%E5%8C%85%E8%A3%85%E7%9B%92%E4%B8%8B%E6%96%99%E9%97%AE%E9%A2%98%E7%A0%94%E7%A9%B6/</url>
+    <url>https://ZLY201.github.io/2020/09/01/%E5%9F%BA%E4%BA%8E%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E5%92%8C%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E7%9A%84%E5%BF%AB%E9%80%92%E5%8C%85%E8%A3%85%E7%9B%92%E4%B8%8B%E6%96%99%E9%97%AE%E9%A2%98%E7%A0%94%E7%A9%B6/</url>
     <content><![CDATA[<h2 id="摘-要"><a href="#摘-要" class="headerlink" title="摘 要"></a><center>摘 要</center></h2><p>&emsp;&emsp;板材下料是多数生产制造企业的第一道工序，如何在满足客户需求的基础上实现材料利用率的提高与利润的最大化，一直是厂家关注的问题。</p>
 <p>&emsp;&emsp;本文旨在通过建立系列数学模型，对企业生产包装纸箱的原材料切割方式及生产规模进行规划，使得该企业利润达到最大化。首先，本文依据遗传算法建立下料模型，确定使得原材料利用率较优的原材料切割方案，并在此基础上，建立合理的线性规划模型，求解利润最大化的最终生产方案。随后，考虑到客户需求的弹性，本文在原有线性规划模型基础上进行优化，确定部分包装可替代条件下的生产方案。最后，本文进行了进一步的分析，探究不同种类快递纸箱的需求变化对生产计划的敏感性，为企业与下游快递公司的合作提供帮助。</p>
 <p>&emsp;&emsp;针对问题一，本文将生产方案的制定进行划分，先确定瓦楞板怎样切割再确定各切割方案怎样生产。首先，以瓦楞纸的最大利用率为目标，建立了以遗传算法为基础的下料模型。在保证各瓦楞纸的切割方案能够覆盖所有的包装种类的前提下，最终排布出了16种固定的切割方案，每种切割方式的平均利用率达到了94.79%。接着，在此基础上，本文根据需求量，以利润最大为目标进行整数线性规划，求得最终生产计划。具体结果为：三层纸箱总利润约为239.599元，原料利用率约为81.08%；五层纸箱总利润约为176.87元，原料利用率约为78.67%，利润总计约416.469元。</p>
@@ -1842,7 +1842,7 @@ x_2+x_5+2\times x_6+2\times x_8+10\times x_9\geq 129+I_{8,9}\\
   </entry>
   <entry>
     <title>树的直径</title>
-    <url>/ZLY201.github.io/2020/09/04/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</url>
+    <url>https://ZLY201.github.io/2020/09/04/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</url>
     <content><![CDATA[<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>&emsp;定义一颗树上最远两个叶子结点的距离为树的直径。</p>
 <h3 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h3><p>&emsp;很容易想到一个$O(n^2)$的暴力算法，即遍历所有的叶子结点，找到距离最远的那两个，距离即为所求，但是复杂度过高，对于$n \geq 1e5$的情况便会显得力不从心。</p>
 <p>&emsp;现在给出$O(n)$算法步骤：</p>
@@ -1875,7 +1875,7 @@ x_2+x_5+2\times x_6+2\times x_8+10\times x_9\geq 129+I_{8,9}\\
   </entry>
   <entry>
     <title>欧拉函数</title>
-    <url>/ZLY201.github.io/2020/07/05/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</url>
+    <url>https://ZLY201.github.io/2020/07/05/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>对于一个正整数x，小于且和x互质的正整数（包括1）的个数，计做$\phi(x)$</p>
 <p>其通项公式为$\phi(x)=x\prod_{i=1}^{n}(1-\frac{1}{p_{i}})$</p>
 <p>其中$p_{i}$代表x的某一个质因数，n为质因数个数</p>
